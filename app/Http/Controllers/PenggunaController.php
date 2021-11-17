@@ -54,11 +54,6 @@ class PenggunaController extends Controller
         return back()->with('success', 'Data Berhasil Ditambahkan!');
     }
 
-    public function show($id)
-    {
-        //
-    }
-
     public function edit(int $id)
     {
         $roles = Role::all();
@@ -96,7 +91,7 @@ class PenggunaController extends Controller
         $user->save();
         $user->assignRole($request->input('peran'));
 
-        return redirect()->route('pengguna.index')->with('message', 'Data Berhasil Diperbarui!');
+        return back()->with('success', 'Data Berhasil Diperbarui!');
     }
 
     public function destroy(int $id)
