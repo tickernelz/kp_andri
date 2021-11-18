@@ -1,7 +1,10 @@
 <?php
 
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\BalitaController;
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\IbuHamilController;
+use App\Http\Controllers\LansiaController;
 use App\Http\Controllers\PenggunaController;
 use Illuminate\Support\Facades\Route;
 
@@ -28,5 +31,12 @@ Route::middleware('auth')->group(function () {
     // Kelola Pengguna
     Route::middleware('can:kelola pengguna')->group(function () {
         Route::resource('pengguna', PenggunaController::class);
+    });
+
+    // Kelola Data
+    Route::middleware('can:kelola data')->group(function () {
+        Route::resource('balita', BalitaController::class);
+        Route::resource('ibu_hamil', IbuHamilController::class);
+        Route::resource('lansia', LansiaController::class);
     });
 });
