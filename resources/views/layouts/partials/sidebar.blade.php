@@ -53,76 +53,311 @@
                 <li>
                     <hr class="hr-horizontal">
                 </li>
-                <li class="nav-item static-item">
-                    <a class="nav-link static-item disabled" href="#" tabindex="-1">
-                        <span class="default-icon">Kelola</span>
-                        <span class="mini-icon">-</span>
-                    </a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link {{ Nav::isResource('pengguna') }}" data-bs-toggle="collapse" href="#sidebar-user" role="button"
-                       aria-expanded="false" aria-controls="sidebar-user">
-                        <i class="icon">
-                            <svg width="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                <path
-                                    d="M11.9488 14.54C8.49884 14.54 5.58789 15.1038 5.58789 17.2795C5.58789 19.4562 8.51765 20.0001 11.9488 20.0001C15.3988 20.0001 18.3098 19.4364 18.3098 17.2606C18.3098 15.084 15.38 14.54 11.9488 14.54Z"
-                                    fill="currentColor"></path>
-                                <path opacity="0.4"
-                                      d="M11.949 12.467C14.2851 12.467 16.1583 10.5831 16.1583 8.23351C16.1583 5.88306 14.2851 4 11.949 4C9.61293 4 7.73975 5.88306 7.73975 8.23351C7.73975 10.5831 9.61293 12.467 11.949 12.467Z"
-                                      fill="currentColor"></path>
-                                <path opacity="0.4"
-                                      d="M21.0881 9.21923C21.6925 6.84176 19.9205 4.70654 17.664 4.70654C17.4187 4.70654 17.1841 4.73356 16.9549 4.77949C16.9244 4.78669 16.8904 4.802 16.8725 4.82902C16.8519 4.86324 16.8671 4.90917 16.8895 4.93889C17.5673 5.89528 17.9568 7.0597 17.9568 8.30967C17.9568 9.50741 17.5996 10.6241 16.9728 11.5508C16.9083 11.6462 16.9656 11.775 17.0793 11.7948C17.2369 11.8227 17.3981 11.8371 17.5629 11.8416C19.2059 11.8849 20.6807 10.8213 21.0881 9.21923Z"
-                                      fill="currentColor"></path>
-                                <path
-                                    d="M22.8094 14.817C22.5086 14.1722 21.7824 13.73 20.6783 13.513C20.1572 13.3851 18.747 13.205 17.4352 13.2293C17.4155 13.232 17.4048 13.2455 17.403 13.2545C17.4003 13.2671 17.4057 13.2887 17.4316 13.3022C18.0378 13.6039 20.3811 14.916 20.0865 17.6834C20.074 17.8032 20.1698 17.9068 20.2888 17.8888C20.8655 17.8059 22.3492 17.4853 22.8094 16.4866C23.0637 15.9589 23.0637 15.3456 22.8094 14.817Z"
-                                    fill="currentColor"></path>
-                                <path opacity="0.4"
-                                      d="M7.04459 4.77973C6.81626 4.7329 6.58077 4.70679 6.33543 4.70679C4.07901 4.70679 2.30701 6.84201 2.9123 9.21947C3.31882 10.8216 4.79355 11.8851 6.43661 11.8419C6.60136 11.8374 6.76343 11.8221 6.92013 11.7951C7.03384 11.7753 7.09115 11.6465 7.02668 11.551C6.3999 10.6234 6.04263 9.50765 6.04263 8.30991C6.04263 7.05904 6.43303 5.89462 7.11085 4.93913C7.13234 4.90941 7.14845 4.86348 7.12696 4.82926C7.10906 4.80135 7.07593 4.78694 7.04459 4.77973Z"
-                                      fill="currentColor"></path>
-                                <path
-                                    d="M3.32156 13.5127C2.21752 13.7297 1.49225 14.1719 1.19139 14.8167C0.936203 15.3453 0.936203 15.9586 1.19139 16.4872C1.65163 17.4851 3.13531 17.8066 3.71195 17.8885C3.83104 17.9065 3.92595 17.8038 3.91342 17.6832C3.61883 14.9167 5.9621 13.6046 6.56918 13.3029C6.59425 13.2885 6.59962 13.2677 6.59694 13.2542C6.59515 13.2452 6.5853 13.2317 6.5656 13.2299C5.25294 13.2047 3.84358 13.3848 3.32156 13.5127Z"
-                                    fill="currentColor"></path>
-                            </svg>
-                        </i>
-                        <span class="item-name">Pengguna</span>
-                        <i class="right-icon">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="18" fill="none" viewBox="0 0 24 24"
-                                 stroke="currentColor">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/>
-                            </svg>
-                        </i>
-                    </a>
-                    <ul class="sub-nav collapse" id="sidebar-user" data-bs-parent="#sidebar-menu">
-                        <li class="nav-item">
-                            <a class="nav-link {{ Nav::isRoute('pengguna.create') }}" href="{{ route('pengguna.create') }}">
-                                <i class="icon">
-                                    <svg xmlns="http://www.w3.org/2000/svg" width="10" viewBox="0 0 24 24"
-                                         fill="currentColor">
-                                        <g>
-                                            <circle cx="12" cy="12" r="8" fill="currentColor"></circle>
-                                        </g>
-                                    </svg>
-                                </i>
-                                <i class="sidenav-mini-icon"> T </i>
-                                <span class="item-name">Tambah Pengguna</span>
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link {{ Nav::isRoute('pengguna.index') }}" href="{{ route('pengguna.index') }}">
-                                <i class="icon">
-                                    <svg xmlns="http://www.w3.org/2000/svg" width="10" viewBox="0 0 24 24"
-                                         fill="currentColor">
-                                        <g>
-                                            <circle cx="12" cy="12" r="8" fill="currentColor"></circle>
-                                        </g>
-                                    </svg>
-                                </i>
-                                <i class="sidenav-mini-icon"> L </i>
-                                <span class="item-name">List Pengguna</span>
-                            </a>
-                        </li>
-                    </ul>
-                </li>
+                @can('kelola pengguna')
+                    <li class="nav-item static-item">
+                        <a class="nav-link static-item disabled" href="#" tabindex="-1">
+                            <span class="default-icon">Kelola</span>
+                            <span class="mini-icon">-</span>
+                        </a>
+                    </li>
+
+                    <li class="nav-item">
+                        <a class="nav-link {{ Nav::isResource('pengguna') }}" data-bs-toggle="collapse"
+                           href="#sidebar-user"
+                           role="button"
+                           aria-expanded="false" aria-controls="sidebar-user">
+                            <i class="icon">
+                                <svg width="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                    <path
+                                        d="M11.9488 14.54C8.49884 14.54 5.58789 15.1038 5.58789 17.2795C5.58789 19.4562 8.51765 20.0001 11.9488 20.0001C15.3988 20.0001 18.3098 19.4364 18.3098 17.2606C18.3098 15.084 15.38 14.54 11.9488 14.54Z"
+                                        fill="currentColor"></path>
+                                    <path opacity="0.4"
+                                          d="M11.949 12.467C14.2851 12.467 16.1583 10.5831 16.1583 8.23351C16.1583 5.88306 14.2851 4 11.949 4C9.61293 4 7.73975 5.88306 7.73975 8.23351C7.73975 10.5831 9.61293 12.467 11.949 12.467Z"
+                                          fill="currentColor"></path>
+                                    <path opacity="0.4"
+                                          d="M21.0881 9.21923C21.6925 6.84176 19.9205 4.70654 17.664 4.70654C17.4187 4.70654 17.1841 4.73356 16.9549 4.77949C16.9244 4.78669 16.8904 4.802 16.8725 4.82902C16.8519 4.86324 16.8671 4.90917 16.8895 4.93889C17.5673 5.89528 17.9568 7.0597 17.9568 8.30967C17.9568 9.50741 17.5996 10.6241 16.9728 11.5508C16.9083 11.6462 16.9656 11.775 17.0793 11.7948C17.2369 11.8227 17.3981 11.8371 17.5629 11.8416C19.2059 11.8849 20.6807 10.8213 21.0881 9.21923Z"
+                                          fill="currentColor"></path>
+                                    <path
+                                        d="M22.8094 14.817C22.5086 14.1722 21.7824 13.73 20.6783 13.513C20.1572 13.3851 18.747 13.205 17.4352 13.2293C17.4155 13.232 17.4048 13.2455 17.403 13.2545C17.4003 13.2671 17.4057 13.2887 17.4316 13.3022C18.0378 13.6039 20.3811 14.916 20.0865 17.6834C20.074 17.8032 20.1698 17.9068 20.2888 17.8888C20.8655 17.8059 22.3492 17.4853 22.8094 16.4866C23.0637 15.9589 23.0637 15.3456 22.8094 14.817Z"
+                                        fill="currentColor"></path>
+                                    <path opacity="0.4"
+                                          d="M7.04459 4.77973C6.81626 4.7329 6.58077 4.70679 6.33543 4.70679C4.07901 4.70679 2.30701 6.84201 2.9123 9.21947C3.31882 10.8216 4.79355 11.8851 6.43661 11.8419C6.60136 11.8374 6.76343 11.8221 6.92013 11.7951C7.03384 11.7753 7.09115 11.6465 7.02668 11.551C6.3999 10.6234 6.04263 9.50765 6.04263 8.30991C6.04263 7.05904 6.43303 5.89462 7.11085 4.93913C7.13234 4.90941 7.14845 4.86348 7.12696 4.82926C7.10906 4.80135 7.07593 4.78694 7.04459 4.77973Z"
+                                          fill="currentColor"></path>
+                                    <path
+                                        d="M3.32156 13.5127C2.21752 13.7297 1.49225 14.1719 1.19139 14.8167C0.936203 15.3453 0.936203 15.9586 1.19139 16.4872C1.65163 17.4851 3.13531 17.8066 3.71195 17.8885C3.83104 17.9065 3.92595 17.8038 3.91342 17.6832C3.61883 14.9167 5.9621 13.6046 6.56918 13.3029C6.59425 13.2885 6.59962 13.2677 6.59694 13.2542C6.59515 13.2452 6.5853 13.2317 6.5656 13.2299C5.25294 13.2047 3.84358 13.3848 3.32156 13.5127Z"
+                                        fill="currentColor"></path>
+                                </svg>
+                            </i>
+                            <span class="item-name">Pengguna</span>
+                            <i class="right-icon">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="18" fill="none" viewBox="0 0 24 24"
+                                     stroke="currentColor">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                          d="M9 5l7 7-7 7"/>
+                                </svg>
+                            </i>
+                        </a>
+                        <ul class="sub-nav collapse" id="sidebar-user" data-bs-parent="#sidebar-menu">
+                            <li class="nav-item">
+                                <a class="nav-link {{ Nav::isRoute('pengguna.create') }}"
+                                   href="{{ route('pengguna.create') }}">
+                                    <i class="icon">
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="10" viewBox="0 0 24 24"
+                                             fill="currentColor">
+                                            <g>
+                                                <circle cx="12" cy="12" r="8" fill="currentColor"></circle>
+                                            </g>
+                                        </svg>
+                                    </i>
+                                    <i class="sidenav-mini-icon"> T </i>
+                                    <span class="item-name">Tambah Pengguna</span>
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link {{ Nav::isRoute('pengguna.index') }}"
+                                   href="{{ route('pengguna.index') }}">
+                                    <i class="icon">
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="10" viewBox="0 0 24 24"
+                                             fill="currentColor">
+                                            <g>
+                                                <circle cx="12" cy="12" r="8" fill="currentColor"></circle>
+                                            </g>
+                                        </svg>
+                                    </i>
+                                    <i class="sidenav-mini-icon"> L </i>
+                                    <span class="item-name">List Pengguna</span>
+                                </a>
+                            </li>
+                        </ul>
+                    </li>
+                    <li>
+                        <hr class="hr-horizontal">
+                    </li>
+                @endcan
+
+                @can('kelola data')
+                    <li class="nav-item static-item">
+                        <a class="nav-link static-item disabled" href="#" tabindex="-1">
+                            <span class="default-icon">Data</span>
+                            <span class="mini-icon">-</span>
+                        </a>
+                    </li>
+                    {{--Balita--}}
+                    <li class="nav-item">
+                        <a class="nav-link {{ Nav::isResource('balita') }}" data-bs-toggle="collapse"
+                           href="#balita"
+                           role="button"
+                           aria-expanded="false" aria-controls="balita">
+                            <i class="icon">
+                                <svg width="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                    <path fill-rule="evenodd" clip-rule="evenodd" fill="currentColor"
+                                          d="M21.666 12.277a7.72 7.72 0 0 0 .171-.665c.003-.017.004-.033.008-.05.02-.098.029-.199.045-.298.025-.157.055-.313.07-.471a7.979 7.979 0 0 0-2.303-6.45A7.979 7.979 0 0 0 14 2v8H6.517l-.858-2H2v2h2.341l1.828 4.266A3.504 3.504 0 0 0 4 17.5C4 19.43 5.57 21 7.5 21c1.759 0 3.204-1.309 3.449-3h2.102c.245 1.691 1.69 3 3.449 3 1.93 0 3.5-1.57 3.5-3.5 0-.63-.181-1.213-.473-1.725.042-.041.089-.077.131-.119.36-.361.688-.759.977-1.184.288-.43.536-.886.736-1.359.016-.037.026-.076.041-.113h.001l.015-.042c.088-.22.168-.441.235-.668l.003-.013zM7.5 19c-.827 0-1.5-.673-1.5-1.5S6.673 16 7.5 16s1.5.673 1.5 1.5S8.327 19 7.5 19zm9 0c-.827 0-1.5-.673-1.5-1.5s.673-1.5 1.5-1.5 1.5.673 1.5 1.5-.673 1.5-1.5 1.5z"></path>
+                                </svg>
+                            </i>
+                            <span class="item-name">Balita</span>
+                            <i class="right-icon">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="18" fill="none" viewBox="0 0 24 24"
+                                     stroke="currentColor">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                          d="M9 5l7 7-7 7"/>
+                                </svg>
+                            </i>
+                        </a>
+                        <ul class="sub-nav collapse" id="balita" data-bs-parent="#sidebar-menu">
+                            <li class="nav-item">
+                                <a class="nav-link {{--{{ Nav::isRoute('balita.daftar') }}--}}"
+                                   href="{{--{{ route('balita.daftar') }}--}}">
+                                    <i class="icon">
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="10" viewBox="0 0 24 24"
+                                             fill="currentColor">
+                                            <g>
+                                                <circle cx="12" cy="12" r="8" fill="currentColor"></circle>
+                                            </g>
+                                        </svg>
+                                    </i>
+                                    <i class="sidenav-mini-icon"> P </i>
+                                    <span class="item-name">Pendaftaraan</span>
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link {{--{{ Nav::isRoute('balita.index') }}--}}"
+                                   href="{{--{{ route('balita.index') }}--}}">
+                                    <i class="icon">
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="10" viewBox="0 0 24 24"
+                                             fill="currentColor">
+                                            <g>
+                                                <circle cx="12" cy="12" r="8" fill="currentColor"></circle>
+                                            </g>
+                                        </svg>
+                                    </i>
+                                    <i class="sidenav-mini-icon"> L </i>
+                                    <span class="item-name">List Balita</span>
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link {{--{{ Nav::isRoute('balita.pemeriksaan') }}--}}"
+                                   href="{{--{{ route('balita.pemeriksaan') }}--}}">
+                                    <i class="icon">
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="10" viewBox="0 0 24 24"
+                                             fill="currentColor">
+                                            <g>
+                                                <circle cx="12" cy="12" r="8" fill="currentColor"></circle>
+                                            </g>
+                                        </svg>
+                                    </i>
+                                    <i class="sidenav-mini-icon"> P </i>
+                                    <span class="item-name">Pemeriksaan</span>
+                                </a>
+                            </li>
+                        </ul>
+                    </li>
+                    {{--Ibu Hamil--}}
+                    <li class="nav-item">
+                        <a class="nav-link {{ Nav::isResource('ibu_hamil') }}" data-bs-toggle="collapse"
+                           href="#ibu-hamil"
+                           role="button"
+                           aria-expanded="false" aria-controls="ibu_hamil">
+                            <i class="icon">
+                                <svg width="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                    <circle fill-rule="evenodd" clip-rule="evenodd" fill="currentColor" cx="12" cy="4"
+                                            r="2"></circle>
+                                    <path fill-rule="evenodd" clip-rule="evenodd" fill="currentColor"
+                                          d="M14.948 7.684A.997.997 0 0 0 14 7h-4a.998.998 0 0 0-.948.684l-2 6 1.775.593L8 18h2v4h4v-4h2l-.827-3.724 1.775-.593-2-5.999z"></path>
+                                </svg>
+                            </i>
+                            <span class="item-name">Ibu Hamil</span>
+                            <i class="right-icon">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="18" fill="none" viewBox="0 0 24 24"
+                                     stroke="currentColor">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                          d="M9 5l7 7-7 7"/>
+                                </svg>
+                            </i>
+                        </a>
+                        <ul class="sub-nav collapse" id="ibu-hamil" data-bs-parent="#sidebar-menu">
+                            <li class="nav-item">
+                                <a class="nav-link {{--{{ Nav::isRoute('ibu_hamil.daftar') }}--}}"
+                                   href="{{--{{ route('ibu_hamil.daftar') }}--}}">
+                                    <i class="icon">
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="10" viewBox="0 0 24 24"
+                                             fill="currentColor">
+                                            <g>
+                                                <circle cx="12" cy="12" r="8" fill="currentColor"></circle>
+                                            </g>
+                                        </svg>
+                                    </i>
+                                    <i class="sidenav-mini-icon"> P </i>
+                                    <span class="item-name">Pendaftaraan</span>
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link {{--{{ Nav::isRoute('ibu_hamil.index') }}--}}"
+                                   href="{{--{{ route('ibu_hamil.index') }}--}}">
+                                    <i class="icon">
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="10" viewBox="0 0 24 24"
+                                             fill="currentColor">
+                                            <g>
+                                                <circle cx="12" cy="12" r="8" fill="currentColor"></circle>
+                                            </g>
+                                        </svg>
+                                    </i>
+                                    <i class="sidenav-mini-icon"> L </i>
+                                    <span class="item-name">List Ibu Hamil</span>
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link {{--{{ Nav::isRoute('ibu_hamil.pemeriksaan') }}--}}"
+                                   href="{{--{{ route('ibu_hamil.pemeriksaan') }}--}}">
+                                    <i class="icon">
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="10" viewBox="0 0 24 24"
+                                             fill="currentColor">
+                                            <g>
+                                                <circle cx="12" cy="12" r="8" fill="currentColor"></circle>
+                                            </g>
+                                        </svg>
+                                    </i>
+                                    <i class="sidenav-mini-icon"> P </i>
+                                    <span class="item-name">Pemeriksaan</span>
+                                </a>
+                            </li>
+                        </ul>
+                    </li>
+                    {{--Lansia--}}
+                    <li class="nav-item">
+                        <a class="nav-link {{ Nav::isResource('lansia') }}" data-bs-toggle="collapse"
+                           href="#lansia"
+                           role="button"
+                           aria-expanded="false" aria-controls="lansia">
+                            <i class="icon">
+                                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-old"
+                                     width="20" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none"
+                                     stroke-linecap="round" stroke-linejoin="round">
+                                    <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+                                    <path d="M11 21l-1 -4l-2 -3v-6"></path>
+                                    <path d="M5 14l-1 -3l4 -3l3 2l3 .5"></path>
+                                    <circle cx="8" cy="4" r="1"></circle>
+                                    <path d="M7 17l-2 4"></path>
+                                    <path d="M16 21v-8.5a1.5 1.5 0 0 1 3 0v.5"></path>
+                                </svg>
+                            </i>
+                            <span class="item-name">Lansia</span>
+                            <i class="right-icon">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="18" fill="none" viewBox="0 0 24 24"
+                                     stroke="currentColor">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                          d="M9 5l7 7-7 7"/>
+                                </svg>
+                            </i>
+                        </a>
+                        <ul class="sub-nav collapse" id="lansia" data-bs-parent="#sidebar-menu">
+                            <li class="nav-item">
+                                <a class="nav-link {{--{{ Nav::isRoute('lansia.daftar') }}--}}"
+                                   href="{{--{{ route('lansia.daftar') }}--}}">
+                                    <i class="icon">
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="10" viewBox="0 0 24 24"
+                                             fill="currentColor">
+                                            <g>
+                                                <circle cx="12" cy="12" r="8" fill="currentColor"></circle>
+                                            </g>
+                                        </svg>
+                                    </i>
+                                    <i class="sidenav-mini-icon"> P </i>
+                                    <span class="item-name">Pendaftaraan</span>
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link {{--{{ Nav::isRoute('lansia.index') }}--}}"
+                                   href="{{--{{ route('lansia.index') }}--}}">
+                                    <i class="icon">
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="10" viewBox="0 0 24 24"
+                                             fill="currentColor">
+                                            <g>
+                                                <circle cx="12" cy="12" r="8" fill="currentColor"></circle>
+                                            </g>
+                                        </svg>
+                                    </i>
+                                    <i class="sidenav-mini-icon"> L </i>
+                                    <span class="item-name">List Lansia</span>
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link {{--{{ Nav::isRoute('lansia.pemeriksaan') }}--}}"
+                                   href="{{--{{ route('lansia.pemeriksaan') }}--}}">
+                                    <i class="icon">
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="10" viewBox="0 0 24 24"
+                                             fill="currentColor">
+                                            <g>
+                                                <circle cx="12" cy="12" r="8" fill="currentColor"></circle>
+                                            </g>
+                                        </svg>
+                                    </i>
+                                    <i class="sidenav-mini-icon"> P </i>
+                                    <span class="item-name">Pemeriksaan</span>
+                                </a>
+                            </li>
+                        </ul>
+                    </li>
+                @endcan
                 <li>
                     <hr class="hr-horizontal">
                 </li>
