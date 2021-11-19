@@ -46,6 +46,7 @@ Route::middleware('auth')->group(function () {
         Route::post('balita/pendaftaraan/post', [BalitaController::class, 'pendaftaran_store'])->name('balita.pendaftaran.post');
         // List Balita
         Route::get('balita/list', [BalitaController::class, 'list'])->name('balita.list');
+        Route::post('balita/list/laporan', [BalitaController::class, 'laporan_pendaftaran'])->name('balita.list.laporan');
         // Lihat Detail Balita
         Route::get('balita/detail/{id}', [BalitaController::class, 'detail'])->name('balita.detail');
         // Edit Data Balita

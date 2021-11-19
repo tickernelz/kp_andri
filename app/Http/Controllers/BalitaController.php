@@ -4,7 +4,9 @@ namespace App\Http\Controllers;
 
 use App\Models\Balita;
 use App\Models\Peserta;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
+use PdfReport;
 
 class BalitaController extends Controller
 {
@@ -96,6 +98,64 @@ class BalitaController extends Controller
         $data_balita = Balita::with('peserta')->firstWhere('id', $id);
 
         return view('data.balita.detail', compact('data_balita'));
+    }
+
+    public function laporan_pendaftaran(Request $request)
+    {
+        $fromDate = $request->input('dari_tanggal');
+        $toDate = $request->input('sampai_tanggal');
+
+        if($fromDate >= $toDate)
+        {
+            return back()->with('error', 'Tanggal Akhir Tidak Boleh Kurang Dari Tanggal Awal');
+        }
+
+        $title = 'Laporan Pendaftaran Balita';
+
+        $meta = [
+            'Dari Tanggal' => Carbon::parse($fromDate)->formatLocalized('%d %B %Y'),
+            'Sampai Tanggal' => Carbon::parse($toDate)->formatLocalized('%d %B %Y')
+        ];
+
+        $data = Balita::with('peserta')->whereBetween('created_at', [$fromDate, $toDate]);
+
+        $columns = [
+            'Nama' => function ($data) {
+                return $data->peserta->nama ?? 'Kosong';
+            },
+            'Nama Ayah' => function ($data) {
+                return $data->ayah ?? 'Kosong';
+            },
+            'Nama Ibu' => function ($data) {
+                return $data->ibu ?? 'Kosong';
+            },
+            'NIK' => function ($data) {
+                return $data->peserta->nik ?? 'Kosong';
+            },
+            'KK' => function ($data) {
+                return $data->peserta->kk ?? 'Kosong';
+            },
+            'Alamat' => function ($data) {
+                return $data->peserta->alamat ?? 'Kosong';
+            },
+            'Kelamin' => function ($data) {
+                return $data->peserta->kelamin ?? 'Kosong';
+            },
+            'Tanggal Lahir' => function ($data) {
+                return Carbon::parse($data->peserta->tanggal_lahir)->formatLocalized('%d %B %Y') ?? 'Kosong' ;
+            },
+            'HP' => function ($data) {
+                return $data->peserta->hp ?? 'Kosong';
+            },
+        ];
+
+        // Generate Report with flexibility to manipulate column class even manipulate column value (using Carbon, etc).
+        return PdfReport::of($title, $meta, $data, $columns)
+            ->editColumns(['Nama', 'Nama Ayah', 'Nama Ibu', 'NIK', 'KK', 'Alamat', 'Kelamin', 'Tanggal Lahir', 'HP'], [
+                'class' => 'center bolder'
+            ])
+            ->setOrientation('landscape')
+            ->stream();
     }
 
     public function destroy(int $id)
