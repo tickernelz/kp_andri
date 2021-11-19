@@ -347,7 +347,7 @@
                     </li>
                     {{--Lansia--}}
                     <li class="nav-item">
-                        <a class="nav-link {{ Nav::isResource('lansia') }}" data-bs-toggle="collapse"
+                        <a class="nav-link {{ Nav::isRoute('lansia.*') }}" data-bs-toggle="collapse"
                            href="#lansia"
                            role="button"
                            aria-expanded="false" aria-controls="lansia">
@@ -374,8 +374,8 @@
                         </a>
                         <ul class="sub-nav collapse" id="lansia" data-bs-parent="#sidebar-menu">
                             <li class="nav-item">
-                                <a class="nav-link {{--{{ Nav::isRoute('lansia.daftar') }}--}}"
-                                   href="{{--{{ route('lansia.daftar') }}--}}">
+                                <a class="nav-link {{ Nav::isRoute('lansia.pendaftaran') }}"
+                                   href="{{ route('lansia.pendaftaran') }}">
                                     <i class="icon">
                                         <svg xmlns="http://www.w3.org/2000/svg" width="10" viewBox="0 0 24 24"
                                              fill="currentColor">
@@ -389,8 +389,8 @@
                                 </a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link {{--{{ Nav::isRoute('lansia.index') }}--}}"
-                                   href="{{--{{ route('lansia.index') }}--}}">
+                                <a class="nav-link  {{ Nav::isRoute('lansia.list') }}"
+                                   href="{{ route('lansia.list') }}">
                                     <i class="icon">
                                         <svg xmlns="http://www.w3.org/2000/svg" width="10" viewBox="0 0 24 24"
                                              fill="currentColor">
@@ -404,8 +404,8 @@
                                 </a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link {{--{{ Nav::isRoute('lansia.pemeriksaan') }}--}}"
-                                   href="{{--{{ route('lansia.pemeriksaan') }}--}}">
+                                <a class="nav-link {{ Nav::isRoute(['lansia.pemeriksaan','lansia.pemeriksaan.*']) }}"
+                                   href="{{ route('lansia.pemeriksaan') }}">
                                     <i class="icon">
                                         <svg xmlns="http://www.w3.org/2000/svg" width="10" viewBox="0 0 24 24"
                                              fill="currentColor">

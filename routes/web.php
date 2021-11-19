@@ -9,6 +9,7 @@ use App\Http\Controllers\LansiaController;
 use App\Http\Controllers\PenggunaController;
 use App\Http\Controllers\PeriksaBalitaController;
 use App\Http\Controllers\PeriksaIbuHamilController;
+use App\Http\Controllers\PeriksaLansiaController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -80,9 +81,27 @@ Route::middleware('auth')->group(function () {
         Route::post('ibu_hamil/pemeriksaan/update/{id}_{tanggal}', [PeriksaIbuHamilController::class, 'pemeriksaan_update'])->name('ibu_hamil.pemeriksaan.update');
         Route::post('ibu_hamil/pemeriksaan/store/{id}_{tanggal}', [PeriksaIbuHamilController::class, 'pemeriksaan_store'])->name('ibu_hamil.pemeriksaan.store');
         // Hapus Data Ibu Hamil
-        Route::delete('ibu_hamil/destroy/{id}', [BalitaController::class, 'destroy'])->name('ibu_hamil.destroy');
+        Route::delete('ibu_hamil/destroy/{id}', [IbuHamilController::class, 'destroy'])->name('ibu_hamil.destroy');
 
-        Route::resource('ibu_hamil', IbuHamilController::class);
-        Route::resource('lansia', LansiaController::class);
+        // Pendaftaran Lansia
+        Route::get('lansia/pendaftaraan', [LansiaController::class, 'pendaftaran'])->name('lansia.pendaftaran');
+        Route::post('lansia/pendaftaraan/post', [LansiaController::class, 'pendaftaran_store'])->name('lansia.pendaftaran.post');
+        // List Lansia
+        Route::get('lansia/list', [LansiaController::class, 'list'])->name('lansia.list');
+        // Lihat Detail Lansia
+        Route::get('lansia/detail/{id}', [LansiaController::class, 'detail'])->name('lansia.detail');
+        // Edit Data Lansia
+        Route::get('lansia/edit/{id}', [LansiaController::class, 'edit'])->name('lansia.edit');
+        Route::post('lansia/edit/{id}/post', [LansiaController::class, 'edit_store'])->name('lansia.edit.post');
+        // Pemeriksaan Lansia
+        Route::get('lansia/pemeriksaan', [PeriksaLansiaController::class, 'pemeriksaan'])->name('lansia.pemeriksaan');
+        Route::get('lansia/pemeriksaan/cari', [PeriksaLansiaController::class, 'pemeriksaan_cari'])->name('lansia.pemeriksaan.cari');
+        Route::get('lansia/pemeriksaan/cari?tanggal={tanggal}', [PeriksaLansiaController::class, 'pemeriksaan_cari'])->name('lansia.pemeriksaan.cari.tanggal');
+        Route::get('lansia/pemeriksaan/{id}_{tanggal}', [PeriksaLansiaController::class, 'pemeriksaan_input'])->name('lansia.pemeriksaan.input');
+        Route::get('lansia/pemeriksaan/edit/{id}_{tanggal}', [PeriksaLansiaController::class, 'pemeriksaan_edit'])->name('lansia.pemeriksaan.edit');
+        Route::post('lansia/pemeriksaan/update/{id}_{tanggal}', [PeriksaLansiaController::class, 'pemeriksaan_update'])->name('lansia.pemeriksaan.update');
+        Route::post('lansia/pemeriksaan/store/{id}_{tanggal}', [PeriksaLansiaController::class, 'pemeriksaan_store'])->name('lansia.pemeriksaan.store');
+        // Hapus Data Lansia
+        Route::delete('lansia/destroy/{id}', [LansiaController::class, 'destroy'])->name('lansia.destroy');
     });
 });
