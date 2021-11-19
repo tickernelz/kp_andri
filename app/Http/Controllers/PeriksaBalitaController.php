@@ -6,7 +6,9 @@ use App\Models\Balita;
 use App\Models\Imunisasi;
 use App\Models\Pemeriksaan;
 use App\Models\PeriksaBalita;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
+use PdfReport;
 
 class PeriksaBalitaController extends Controller
 {
@@ -98,5 +100,113 @@ class PeriksaBalitaController extends Controller
         $data->save();
 
         return redirect()->route('balita.pemeriksaan.cari.tanggal', $tanggal)->with('message', 'Data Berhasil Diperbarui!');
+    }
+
+    public function laporan_pemeriksaan(Request $request)
+    {
+        $fromDate = $request->input('dari_tanggal');
+        $toDate = $request->input('sampai_tanggal');
+
+        if ($fromDate >= $toDate) {
+            return back()->with('error', 'Tanggal Akhir Tidak Boleh Kurang Dari Tanggal Awal');
+        }
+
+        $title = 'Laporan Pemeriksaan Balita';
+
+        $meta = [
+            'Dari Tanggal' => Carbon::parse($fromDate)->formatLocalized('%d %B %Y'),
+            'Sampai Tanggal' => Carbon::parse($toDate)->formatLocalized('%d %B %Y')
+        ];
+
+        $data = PeriksaBalita::with('imunisasi')->whereHas('pemeriksaan', function ($q) use ($toDate, $fromDate) {
+            $q->whereBetween('tanggal', [$fromDate, $toDate]);
+        });
+
+        $columns = [
+            'Nama' => function ($data) {
+                return $data->pemeriksaan->peserta->nama ?? 'Kosong';
+            },
+            'Usia' => function ($data) {
+                return Carbon::parse($data->pemeriksaan->peserta->tanggal_lahir)->age . ' Tahun' ?? 'Kosong';
+            },
+            'Berat Badan' => function ($data) {
+                return $data->berat_badan ?? 'Kosong';
+            },
+            'Tinggi Badan' => function ($data) {
+                return $data->tinggi_badan ?? 'Kosong';
+            },
+            'Lingkar Kepala' => function ($data) {
+                return $data->lingkar_kepala ?? 'Kosong';
+            },
+            'Imunisasi' => function ($data) {
+                return $data->imunisasi->nama ?? 'Kosong';
+            },
+            'Keluhan' => function ($data) {
+                return $data->pemeriksaan->keluhan ?? 'Kosong';
+            },
+            'Penanganan' => function ($data) {
+                return $data->pemeriksaan->penanganan ?? 'Kosong';
+            },
+            'Catatan' => function ($data) {
+                return $data->pemeriksaan->catatan ?? 'Kosong';
+            },
+        ];
+
+        // Generate Report with flexibility to manipulate column class even manipulate column value (using Carbon, etc).
+        return PdfReport::of($title, $meta, $data, $columns)
+            ->editColumns(['Nama', 'Usia', 'Berat Badan', 'Tinggi Badan', 'Lingkar Kepala', 'Imunisasi', 'Keluhan', 'Penanganan', 'Catatan'], [
+                'class' => 'center bolder'
+            ])
+            ->setOrientation('landscape')
+            ->stream();
+    }
+
+    public function laporan_kehadiran(Request $request)
+    {
+        $fromDate = $request->input('dari_tanggal');
+        $toDate = $request->input('sampai_tanggal');
+
+        if ($fromDate >= $toDate) {
+            return back()->with('error', 'Tanggal Akhir Tidak Boleh Kurang Dari Tanggal Awal');
+        }
+
+        $title = 'Laporan Kehadiran Balita';
+
+        $meta = [
+            'Dari Tanggal' => Carbon::parse($fromDate)->formatLocalized('%d %B %Y'),
+            'Sampai Tanggal' => Carbon::parse($toDate)->formatLocalized('%d %B %Y')
+        ];
+
+        $data = Balita::with('peserta')->whereBetween('created_at', [$fromDate, $toDate]);
+
+        $columns = [
+            'Nama' => function ($data) {
+                return $data->peserta->nama ?? 'Kosong';
+            },
+            'Usia' => function ($data) {
+                return Carbon::parse($data->peserta->tanggal_lahir)->age . ' Tahun' ?? 'Kosong';
+            },
+            'Kelamin' => function ($data) {
+                return $data->peserta->kelamin ?? 'Kosong';
+            },
+            'Alamat' => function ($data) {
+                return $data->peserta->alamat ?? 'Kosong';
+            },
+            'Kehadiran' => function ($data) use ($toDate, $fromDate) {
+                if (Pemeriksaan::whereBetween('tanggal', [$fromDate, $toDate])->where('peserta_id', $data->peserta->id)->first()) {
+                    return 'Hadir';
+                }
+
+                return 'Tidak Hadir';
+            },
+        ];
+
+        // Generate Report with flexibility to manipulate column class even manipulate column value (using Carbon, etc).
+        return PdfReport::of($title, $meta, $data, $columns)
+            ->editColumns(['Nama', 'Usia', 'Kelamin', 'Alamat', 'Kehadiran'], [
+                'class' => 'center bolder'
+            ])
+            ->setOrientation('landscape')
+            ->stream();
     }
 }

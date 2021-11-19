@@ -55,6 +55,8 @@ Route::middleware('auth')->group(function () {
         // Pemeriksaan Balita
         Route::get('balita/pemeriksaan', [PeriksaBalitaController::class, 'pemeriksaan'])->name('balita.pemeriksaan');
         Route::get('balita/pemeriksaan/cari', [PeriksaBalitaController::class, 'pemeriksaan_cari'])->name('balita.pemeriksaan.cari');
+        Route::post('balita/pemeriksaan/laporan', [PeriksaBalitaController::class, 'laporan_pemeriksaan'])->name('balita.pemeriksaan.laporan');
+        Route::post('balita/pemeriksaan/kehadiran/laporan', [PeriksaBalitaController::class, 'laporan_kehadiran'])->name('balita.pemeriksaan.kehadiran.laporan');
         Route::get('balita/pemeriksaan/cari?tanggal={tanggal}', [PeriksaBalitaController::class, 'pemeriksaan_cari'])->name('balita.pemeriksaan.cari.tanggal');
         Route::get('balita/pemeriksaan/{id}_{tanggal}', [PeriksaBalitaController::class, 'pemeriksaan_input'])->name('balita.pemeriksaan.input');
         Route::get('balita/pemeriksaan/edit/{id}_{tanggal}', [PeriksaBalitaController::class, 'pemeriksaan_edit'])->name('balita.pemeriksaan.edit');
