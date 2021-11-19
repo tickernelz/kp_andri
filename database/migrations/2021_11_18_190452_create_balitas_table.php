@@ -15,7 +15,7 @@ class CreateBalitasTable extends Migration
     {
         Schema::create('balitas', function (Blueprint $table) {
             $table->id();
-            $table->foreignIdFor(\App\Models\Peserta::class)->constrained();
+            $table->foreignIdFor(\App\Models\Peserta::class)->constrained()->onDelete('cascade');
             $table->string('ayah');
             $table->string('ibu');
             $table->timestamps();

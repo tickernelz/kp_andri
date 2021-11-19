@@ -15,7 +15,7 @@ class CreatePemeriksaansTable extends Migration
     {
         Schema::create('pemeriksaans', function (Blueprint $table) {
             $table->id();
-            $table->foreignIdFor(\App\Models\Peserta::class)->constrained();
+            $table->foreignIdFor(\App\Models\Peserta::class)->constrained()->onDelete('cascade');
             $table->date('tanggal');
             $table->text('keluhan');
             $table->text('penanganan')->nullable();

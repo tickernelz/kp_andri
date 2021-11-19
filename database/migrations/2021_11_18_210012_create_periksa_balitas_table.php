@@ -1,6 +1,5 @@
 <?php
 
-use App\Models\JadwalBalita;
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
@@ -16,11 +15,11 @@ class CreatePeriksaBalitasTable extends Migration
     {
         Schema::create('periksa_balitas', function (Blueprint $table) {
             $table->id();
-            $table->foreignIdFor(\App\Models\Pemeriksaan::class)->constrained();
+            $table->foreignIdFor(\App\Models\Pemeriksaan::class)->constrained()->onDelete('cascade');
             $table->float('berat_badan');
             $table->float('tinggi_badan');
             $table->float('lingkar_kepala');
-            $table->foreignIdFor(\App\Models\Imunisasi::class)->constrained();
+            $table->foreignIdFor(\App\Models\Imunisasi::class)->constrained()->onDelete('cascade');
             $table->timestamps();
         });
     }

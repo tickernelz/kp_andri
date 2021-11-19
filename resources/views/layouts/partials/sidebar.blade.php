@@ -130,10 +130,73 @@
                             </li>
                         </ul>
                     </li>
-                    <li>
-                        <hr class="hr-horizontal">
+                @endcan
+                @can('kelola data')
+                    <li class="nav-item">
+                        <a class="nav-link {{ Nav::isResource('imunisasi') }}" data-bs-toggle="collapse"
+                           href="#imunisasi"
+                           role="button"
+                           aria-expanded="false" aria-controls="sidebar-user">
+                            <i class="icon">
+                                <svg xmlns="http://www.w3.org/2000/svg"
+                                     class="icon icon-tabler icon-tabler-medicine-syrup" width="20" viewBox="0 0 24 24"
+                                     stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round"
+                                     stroke-linejoin="round">
+                                    <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+                                    <path
+                                        d="M8 21h8a1 1 0 0 0 1 -1v-10a3 3 0 0 0 -3 -3h-4a3 3 0 0 0 -3 3v10a1 1 0 0 0 1 1z"></path>
+                                    <path d="M10 14h4"></path>
+                                    <path d="M12 12v4"></path>
+                                    <path d="M10 7v-3a1 1 0 0 1 1 -1h2a1 1 0 0 1 1 1v3"></path>
+                                </svg>
+                            </i>
+                            <span class="item-name">Imunisasi</span>
+                            <i class="right-icon">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="18" fill="none" viewBox="0 0 24 24"
+                                     stroke="currentColor">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                          d="M9 5l7 7-7 7"/>
+                                </svg>
+                            </i>
+                        </a>
+                        <ul class="sub-nav collapse" id="imunisasi" data-bs-parent="#sidebar-menu">
+                            <li class="nav-item">
+                                <a class="nav-link {{ Nav::isRoute('imunisasi.create') }}"
+                                   href="{{ route('imunisasi.create') }}">
+                                    <i class="icon">
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="10" viewBox="0 0 24 24"
+                                             fill="currentColor">
+                                            <g>
+                                                <circle cx="12" cy="12" r="8" fill="currentColor"></circle>
+                                            </g>
+                                        </svg>
+                                    </i>
+                                    <i class="sidenav-mini-icon"> T </i>
+                                    <span class="item-name">Tambah Imunisasi</span>
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link {{ Nav::isRoute('imunisasi.index') }}"
+                                   href="{{ route('imunisasi.index') }}">
+                                    <i class="icon">
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="10" viewBox="0 0 24 24"
+                                             fill="currentColor">
+                                            <g>
+                                                <circle cx="12" cy="12" r="8" fill="currentColor"></circle>
+                                            </g>
+                                        </svg>
+                                    </i>
+                                    <i class="sidenav-mini-icon"> L </i>
+                                    <span class="item-name">List Imunisasi</span>
+                                </a>
+                            </li>
+                        </ul>
                     </li>
                 @endcan
+
+                <li>
+                    <hr class="hr-horizontal">
+                </li>
 
                 @can('kelola data')
                     <li class="nav-item static-item">
@@ -144,7 +207,7 @@
                     </li>
                     {{--Balita--}}
                     <li class="nav-item">
-                        <a class="nav-link {{ Nav::isResource('balita') }}" data-bs-toggle="collapse"
+                        <a class="nav-link {{ Nav::isRoute(['balita.*']) }}" data-bs-toggle="collapse"
                            href="#balita"
                            role="button"
                            aria-expanded="false" aria-controls="balita">
@@ -165,8 +228,8 @@
                         </a>
                         <ul class="sub-nav collapse" id="balita" data-bs-parent="#sidebar-menu">
                             <li class="nav-item">
-                                <a class="nav-link {{--{{ Nav::isRoute('balita.daftar') }}--}}"
-                                   href="{{--{{ route('balita.daftar') }}--}}">
+                                <a class="nav-link {{ Nav::isRoute('balita.pendaftaran') }}"
+                                   href="{{ route('balita.pendaftaran') }}">
                                     <i class="icon">
                                         <svg xmlns="http://www.w3.org/2000/svg" width="10" viewBox="0 0 24 24"
                                              fill="currentColor">
@@ -180,8 +243,8 @@
                                 </a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link {{--{{ Nav::isRoute('balita.index') }}--}}"
-                                   href="{{--{{ route('balita.index') }}--}}">
+                                <a class="nav-link {{ Nav::isRoute('balita.list') }}"
+                                   href="{{ route('balita.list') }}">
                                     <i class="icon">
                                         <svg xmlns="http://www.w3.org/2000/svg" width="10" viewBox="0 0 24 24"
                                              fill="currentColor">
@@ -195,8 +258,8 @@
                                 </a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link {{--{{ Nav::isRoute('balita.pemeriksaan') }}--}}"
-                                   href="{{--{{ route('balita.pemeriksaan') }}--}}">
+                                <a class="nav-link {{ Nav::isRoute(['balita.pemeriksaan','balita.pemeriksaan.*']) }}"
+                                   href="{{ route('balita.pemeriksaan') }}">
                                     <i class="icon">
                                         <svg xmlns="http://www.w3.org/2000/svg" width="10" viewBox="0 0 24 24"
                                              fill="currentColor">
