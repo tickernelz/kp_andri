@@ -1,0 +1,12 @@
+echo web: vendor/bin/heroku-php-apache2 public/ > Procfile
+git push heroku heroku:master
+heroku config:add APP_DEBUG=true
+heroku config:add APP_KEY=base64:9MYDSaf2VEgfvH4poNPh+Dhftqzknr7OT8Cd7FfDv2s=
+heroku config:add APP_NAME=kp-andri
+heroku config:add APP_ENV=production
+heroku config:add APP_URL=https://kp-andri.herokuapp.com
+heroku addons:create heroku-postgresql:hobby-dev
+heroku pg:credentials:url
+heroku config:add DB_CONNECTION=pgsql
+heroku run php artisan migrate:fresh --seed
+heroku run php artisan storage:link
