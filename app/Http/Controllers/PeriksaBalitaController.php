@@ -25,7 +25,7 @@ class PeriksaBalitaController extends Controller
 
     public function pemeriksaan_input(int $id, string $tanggal)
     {
-        $data = Balita::with('peserta')->firstWhere('id', $id);
+        $data = Balita::with('peserta')->firstWhere('peserta_id', $id);
         $imunisasi = Imunisasi::get();
 
         return view('data.balita.pemeriksaan.input', compact('tanggal', 'data', 'imunisasi'));
