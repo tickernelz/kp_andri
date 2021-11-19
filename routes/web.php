@@ -7,6 +7,7 @@ use App\Http\Controllers\IbuHamilController;
 use App\Http\Controllers\ImunisasiController;
 use App\Http\Controllers\LansiaController;
 use App\Http\Controllers\PenggunaController;
+use App\Http\Controllers\PeriksaBalitaController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -32,11 +33,12 @@ Route::middleware('auth')->group(function () {
     // Kelola Pengguna
     Route::middleware('can:kelola pengguna')->group(function () {
         Route::resource('pengguna', PenggunaController::class);
-        Route::resource('imunisasi', ImunisasiController::class);
     });
 
     // Kelola Data
     Route::middleware('can:kelola data')->group(function () {
+        // Kelola Imunisasi
+        Route::resource('imunisasi', ImunisasiController::class);
         // Pendaftaran Balita
         Route::get('balita/pendaftaraan', [BalitaController::class, 'pendaftaran'])->name('balita.pendaftaran');
         Route::post('balita/pendaftaraan/post', [BalitaController::class, 'pendaftaran_store'])->name('balita.pendaftaran.post');
@@ -48,12 +50,13 @@ Route::middleware('auth')->group(function () {
         Route::get('balita/edit/{id}', [BalitaController::class, 'edit'])->name('balita.edit');
         Route::post('balita/edit/{id}/post', [BalitaController::class, 'edit_store'])->name('balita.edit.post');
         // Pemeriksaan Balita
-        Route::get('balita/pemeriksaan', [BalitaController::class, 'pemeriksaan'])->name('balita.pemeriksaan');
-        Route::get('balita/pemeriksaan/cari', [BalitaController::class, 'pemeriksaan_cari'])->name('balita.pemeriksaan.cari');
-        Route::get('balita/pemeriksaan/{id}_{tanggal}', [BalitaController::class, 'pemeriksaan_input'])->name('balita.pemeriksaan.input');
-        Route::get('balita/pemeriksaan/edit/{id}_{tanggal}', [BalitaController::class, 'pemeriksaan_edit'])->name('balita.pemeriksaan.edit');
-        Route::post('balita/pemeriksaan/update/{id}', [BalitaController::class, 'pemeriksaan_update'])->name('balita.pemeriksaan.update');
-        Route::post('balita/pemeriksaan/store/{id}', [BalitaController::class, 'pemeriksaan_store'])->name('balita.pemeriksaan.store');
+        Route::get('balita/pemeriksaan', [PeriksaBalitaController::class, 'pemeriksaan'])->name('balita.pemeriksaan');
+        Route::get('balita/pemeriksaan/cari', [PeriksaBalitaController::class, 'pemeriksaan_cari'])->name('balita.pemeriksaan.cari');
+        Route::get('balita/pemeriksaan/cari?tanggal={tanggal}', [PeriksaBalitaController::class, 'pemeriksaan_cari'])->name('balita.pemeriksaan.cari.tanggal');
+        Route::get('balita/pemeriksaan/{id}_{tanggal}', [PeriksaBalitaController::class, 'pemeriksaan_input'])->name('balita.pemeriksaan.input');
+        Route::get('balita/pemeriksaan/edit/{id}_{tanggal}', [PeriksaBalitaController::class, 'pemeriksaan_edit'])->name('balita.pemeriksaan.edit');
+        Route::post('balita/pemeriksaan/update/{id}_{tanggal}', [PeriksaBalitaController::class, 'pemeriksaan_update'])->name('balita.pemeriksaan.update');
+        Route::post('balita/pemeriksaan/store/{id}_{tanggal}', [PeriksaBalitaController::class, 'pemeriksaan_store'])->name('balita.pemeriksaan.store');
         // Hapus Data Balita
         Route::delete('balita/destroy/{id}', [BalitaController::class, 'destroy'])->name('balita.destroy');
 

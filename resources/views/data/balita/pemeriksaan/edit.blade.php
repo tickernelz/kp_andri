@@ -17,7 +17,8 @@
                                  type="success"/>
                     @endif
                     <div class="new-user-info">
-                        <form action="{{ route('balita.pemeriksaan.store', $data->peserta->id) }}" method="post">
+                        <form action="{{ route('balita.pemeriksaan.update', [$data->periksa_balita->id, $tanggal]) }}"
+                              method="post">
                             @csrf
                             <div class="row mb-4">
                                 <div class="form-group">
@@ -25,21 +26,32 @@
                                     <input type="text" class="form-control"
                                            value="{{ $data->peserta->nama }}" readonly>
                                 </div>
-                                <x-flatpickr value="{{ $tanggal }}" name="tanggal" label="Tanggal Pemeriksaan" form="" classes=""/>
-                                <x-input-text name="berat_badan" classes="" value=""
+                                <x-flatpickr value="{{ $data->tanggal }}" name="tanggal" label="Tanggal Pemeriksaan"
+                                             form="" classes=""/>
+                                <x-input-text name="berat_badan" classes=""
+                                              value="{{ $data->periksa_balita->berat_badan }}"
                                               type="number" form="" label="Berat Badan (kg)"/>
-                                <x-input-text name="tinggi_badan" classes="" value=""
+                                <x-input-text name="tinggi_badan" classes=""
+                                              value="{{ $data->periksa_balita->tinggi_badan }}"
                                               type="number" form="" label="Tinggi Badan (cm)"/>
-                                <x-input-text name="lingkar_kepala" classes="" value=""
+                                <x-input-text name="lingkar_kepala" classes=""
+                                              value="{{ $data->periksa_balita->lingkar_kepala }}"
                                               type="number" form="" label="Lingkar Kepala (cm)"/>
-                                <x-select classes="" name="imunisasi" label="Imunisasi" form="" >
+                                <x-select classes="" name="imunisasi" label="Imunisasi" form="">
                                     @foreach($imunisasi as $li)
-                                        <option value="{{ $li->id }}">{{ $li->nama }}</option>
+                                        <option @if($data->periksa_balita->imunisasi_id === $li->id) selected
+                                                @endif value="{{ $li->id }}">{{ $li->nama }}</option>
                                     @endforeach
                                 </x-select>
-                                <x-text-area name="keluhan" classes="" form="" label="Keluhan"/>
-                                <x-text-area name="penanganan" classes="" form="" label="Penanganan"/>
-                                <x-text-area name="catatan" classes="" form="" label="Catatan"/>
+                                <x-text-area name="keluhan" classes="" form="" label="Keluhan">
+                                    {{ $data->keluhan }}
+                                </x-text-area>
+                                <x-text-area name="penanganan" classes="" form="" label="Penanganan">
+                                    {{ $data->penanganan }}
+                                </x-text-area>
+                                <x-text-area name="catatan" classes="" form="" label="Catatan">
+                                    {{ $data->penanganan }}
+                                </x-text-area>
                             </div>
                             <button type="submit" class="btn btn-primary">Simpan</button>
                         </form>

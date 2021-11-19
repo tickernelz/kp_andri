@@ -3,9 +3,6 @@
 namespace App\Http\Controllers;
 
 use App\Models\Balita;
-use App\Models\Imunisasi;
-use App\Models\Pemeriksaan;
-use App\Models\PeriksaBalita;
 use App\Models\Peserta;
 use Illuminate\Http\Request;
 
@@ -101,99 +98,8 @@ class BalitaController extends Controller
         return view('data.balita.detail', compact('data_balita'));
     }
 
-    public function pemeriksaan()
-    {
-        return view('data.balita.pemeriksaan');
-    }
-
-    public function pemeriksaan_cari(Request $request)
-    {
-        $tanggal = $request->input('tanggal');
-        $data_balita = Balita::with('peserta')->get();
-
-        return view('data.balita.pemeriksaan', compact('tanggal', 'data_balita'));
-    }
-
-    public function pemeriksaan_input(int $id, string $tanggal)
-    {
-        $data = Balita::with('peserta')->firstWhere('id', $id);
-        $imunisasi = Imunisasi::get();
-
-        return view('data.balita.pemeriksaan-input', compact('tanggal', 'data', 'imunisasi'));
-    }
-
-    public function pemeriksaan_store(Request $request, int $id)
-    {
-        $request->validate([
-            'tanggal' => 'required|string',
-            'berat_badan' => 'required|string',
-            'tinggi_badan' => 'required|string',
-            'lingkar_kepala' => 'required|string',
-            'keluhan' => 'required|string',
-            'penanganan' => 'nullable|string',
-            'catatan' => 'nullable|string',
-            'imunisasi' => 'required|string',
-        ]);
-
-        $pemeriksaan = new Pemeriksaan();
-        $pemeriksaan->peserta_id = $id;
-        $pemeriksaan->tanggal = $request->input('tanggal');
-        $pemeriksaan->keluhan = $request->input('keluhan');
-        $pemeriksaan->penanganan = $request->input('penanganan');
-        $pemeriksaan->catatan = $request->input('catatan');
-        $pemeriksaan->save();
-
-        $balita = new PeriksaBalita();
-        $balita->berat_badan = $request->input('berat_badan');
-        $balita->tinggi_badan = $request->input('tinggi_badan');
-        $balita->lingkar_kepala = $request->input('lingkar_kepala');
-        $balita->imunisasi_id = $request->input('imunisasi');
-        $balita->pemeriksaan()->associate($pemeriksaan);
-        $balita->save();
-
-        return back()->with('success', 'Data Berhasil Ditambahkan!');
-    }
-
-    public function pemeriksaan_edit(int $id, string $tanggal)
-    {
-        $data = Pemeriksaan::with('periksa_balitas', 'peserta')->firstWhere([['peserta_id', '=', $id], ['tanggal', '=', $tanggal]]);
-        $imunisasi = Imunisasi::get();
-
-        return view('data.balita.pemeriksaan-edit', compact('tanggal', 'data', 'imunisasi'));
-    }
-
-    public function pemeriksaan_update(Request $request, int $id)
-    {
-        $data = PeriksaBalita::with('pemeriksaan')->firstWhere('id', $id);
-
-        $request->validate([
-            'tanggal' => 'required|string',
-            'berat_badan' => 'required|string',
-            'tinggi_badan' => 'required|string',
-            'lingkar_kepala' => 'required|string',
-            'keluhan' => 'required|string',
-            'penanganan' => 'nullable|string',
-            'catatan' => 'nullable|string',
-            'imunisasi' => 'required|string',
-        ]);
-
-        $data->pemeriksaan->tanggal = $request->input('tanggal');
-        $data->pemeriksaan->keluhan = $request->input('keluhan');
-        $data->pemeriksaan->penanganan = $request->input('penanganan');
-        $data->pemeriksaan->catatan = $request->input('catatan');
-        $data->berat_badan = $request->input('berat_badan');
-        $data->tinggi_badan = $request->input('tinggi_badan');
-        $data->lingkar_kepala = $request->input('lingkar_kepala');
-        $data->imunisasi_id = $request->input('imunisasi');
-        $data->pemeriksaan->save();
-        $data->save();
-
-        return back()->with('success', 'Data Berhasil Diperbarui!');
-    }
-
     public function destroy(int $id)
     {
-        Balita::where('peserta_id', $id)->delete();
         Peserta::find($id)->delete();
 
         return back()->with('message', 'Data Berhasil Dihapus!');
