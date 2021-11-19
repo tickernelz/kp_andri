@@ -15,7 +15,7 @@ class CreateIbuHamilsTable extends Migration
     {
         Schema::create('ibu_hamils', function (Blueprint $table) {
             $table->id();
-            $table->foreignIdFor(\App\Models\Peserta::class)->constrained();
+            $table->foreignIdFor(\App\Models\Peserta::class)->constrained()->onDelete('cascade');
             $table->string('golongan_darah');
             $table->text('riwayat_penyakit');
             $table->text('riwayat_alergi');

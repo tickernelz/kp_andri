@@ -1,6 +1,5 @@
 <?php
 
-use App\Models\JadwalIbuHamil;
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
@@ -16,7 +15,7 @@ class CreatePeriksaIbuHamilsTable extends Migration
     {
         Schema::create('periksa_ibu_hamils', function (Blueprint $table) {
             $table->id();
-            $table->foreignIdFor(\App\Models\Pemeriksaan::class)->constrained();
+            $table->foreignIdFor(\App\Models\Pemeriksaan::class)->constrained()->onDelete('cascade');
             $table->float('berat_badan');
             $table->float('tekanan_darah');
             $table->integer('bulan_kehamilan');

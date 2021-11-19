@@ -15,7 +15,7 @@ class CreateLansiasTable extends Migration
     {
         Schema::create('lansias', function (Blueprint $table) {
             $table->id();
-            $table->foreignIdFor(\App\Models\Peserta::class)->constrained();
+            $table->foreignIdFor(\App\Models\Peserta::class)->constrained()->onDelete('cascade');
             $table->string('golongan_darah');
             $table->text('riwayat_penyakit');
             $table->text('riwayat_alergi');

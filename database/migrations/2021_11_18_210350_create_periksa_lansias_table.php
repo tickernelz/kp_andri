@@ -15,7 +15,7 @@ class CreatePeriksaLansiasTable extends Migration
     {
         Schema::create('periksa_lansias', function (Blueprint $table) {
             $table->id();
-            $table->foreignIdFor(\App\Models\Pemeriksaan::class)->constrained();
+            $table->foreignIdFor(\App\Models\Pemeriksaan::class)->constrained()->onDelete('cascade');
             $table->float('berat_badan');
             $table->float('tekanan_darah');
             $table->float('gula_darah');
