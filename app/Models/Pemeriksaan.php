@@ -40,6 +40,9 @@ use Illuminate\Database\Eloquent\Model;
  * @method static \Illuminate\Database\Eloquent\Builder|Pemeriksaan whereTanggal($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Pemeriksaan whereUpdatedAt($value)
  * @mixin \Eloquent
+ * @property-read \App\Models\PeriksaBalita|null $periksa_balita
+ * @property-read \App\Models\PeriksaIbuHamil|null $periksa_ibu_hamil
+ * @property-read \App\Models\PeriksaLansia|null $periksa_lansia
  */
 class Pemeriksaan extends Model
 {
@@ -71,13 +74,28 @@ class Pemeriksaan extends Model
         return $this->hasMany(PeriksaBalita::class);
     }
 
+    public function periksa_balita()
+    {
+        return $this->hasOne(PeriksaBalita::class);
+    }
+
     public function periksa_ibu_hamils()
     {
         return $this->hasMany(PeriksaIbuHamil::class);
     }
 
+    public function periksa_ibu_hamil()
+    {
+        return $this->hasOne(PeriksaIbuHamil::class);
+    }
+
     public function periksa_lansias()
     {
         return $this->hasMany(PeriksaLansia::class);
+    }
+
+    public function periksa_lansia()
+    {
+        return $this->hasOne(PeriksaLansia::class);
     }
 }

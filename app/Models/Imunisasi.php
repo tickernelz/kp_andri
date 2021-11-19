@@ -29,6 +29,7 @@ use Illuminate\Database\Eloquent\Model;
  * @method static \Illuminate\Database\Eloquent\Builder|Imunisasi whereNama($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Imunisasi whereUpdatedAt($value)
  * @mixin \Eloquent
+ * @property-read \App\Models\PeriksaBalita|null $periksa_balita
  */
 class Imunisasi extends Model
 {
@@ -42,5 +43,10 @@ class Imunisasi extends Model
     public function periksa_balitas()
     {
         return $this->hasMany(PeriksaBalita::class);
+    }
+
+    public function periksa_balita()
+    {
+        return $this->hasOne(PeriksaBalita::class);
     }
 }

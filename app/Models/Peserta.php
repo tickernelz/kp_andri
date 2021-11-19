@@ -45,6 +45,10 @@ use Illuminate\Database\Eloquent\Model;
  * @method static \Illuminate\Database\Eloquent\Builder|Peserta whereTanggalLahir($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Peserta whereUpdatedAt($value)
  * @mixin \Eloquent
+ * @property-read \App\Models\Balita|null $balita
+ * @property-read \App\Models\IbuHamil|null $ibu_hamil
+ * @property-read \App\Models\Lansia|null $lansia
+ * @property-read \App\Models\Pemeriksaan|null $pemeriksaan
  */
 class Peserta extends Model
 {
@@ -74,9 +78,19 @@ class Peserta extends Model
         return $this->hasMany(Balita::class);
     }
 
+    public function balita()
+    {
+        return $this->hasOne(Balita::class);
+    }
+
     public function ibu_hamils()
     {
         return $this->hasMany(IbuHamil::class);
+    }
+
+    public function ibu_hamil()
+    {
+        return $this->hasOne(IbuHamil::class);
     }
 
     public function lansias()
@@ -84,8 +98,18 @@ class Peserta extends Model
         return $this->hasMany(Lansia::class);
     }
 
+    public function lansia()
+    {
+        return $this->hasOne(Lansia::class);
+    }
+
     public function pemeriksaans()
     {
         return $this->hasMany(Pemeriksaan::class);
+    }
+
+    public function pemeriksaan()
+    {
+        return $this->hasOne(Pemeriksaan::class);
     }
 }
