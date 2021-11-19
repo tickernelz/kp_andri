@@ -47,12 +47,16 @@
                                     </div>
                                 </div>
                                 <x-flatpickr :value="$data->peserta->tanggal_lahir" name="tanggal_lahir" label="Tanggal Lahir" form="" classes=""/>
-                                <x-input-text name="ayah" classes="" :value="$data->ayah"
-                                              type="" form="" label="Nama Ayah"/>
-                                <x-input-text name="ibu" classes="" :value="$data->ibu"
-                                              type="" form="" label="Nama Ibu"/>
                                 <x-input-text name="hp" classes="" :value="$data->peserta->hp"
                                               type="number" form="" label="No. HP"/>
+                                <x-input-text name="golongan_darah" classes="" :value="$data->golongan_darah"
+                                              type="" form="" label="Golongan Darah"/>
+                                <x-text-area name="riwayat_penyakit" classes="" form="" label="Riwayat Penyakit">
+                                    {{ $data->riwayat_penyakit }}
+                                </x-text-area>
+                                <x-text-area name="riwayat_alergi" classes="" form="" label="Riwayat Alergi">
+                                    {{ $data->riwayat_alergi }}
+                                </x-text-area>
                             </div>
                             <button type="submit" class="btn btn-primary">Simpan</button>
                         </form>
