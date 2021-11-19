@@ -4,9 +4,11 @@ namespace App\View\Components;
 
 use Illuminate\View\Component;
 
-class Select extends Component
+class Flatpickr extends Component
 {
     public $name;
+
+    public $value;
 
     public $label;
 
@@ -19,12 +21,13 @@ class Select extends Component
      *
      * @return void
      */
-    public function __construct($name, $label, $classes, $form)
+    public function __construct($name, $value, $label, $classes, $form)
     {
         $this->label = $label ?? '';
         $this->name = $name ?? '';
-        $this->classes = $classes ?? '';
         $this->form = $form ?? '';
+        $this->value = $value ?? '';
+        $this->classes = $classes ?? '';
     }
 
     /**
@@ -34,6 +37,6 @@ class Select extends Component
      */
     public function render()
     {
-        return view('components.select');
+        return view('components.flatpickr');
     }
 }

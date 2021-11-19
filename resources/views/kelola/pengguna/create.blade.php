@@ -21,60 +21,31 @@
                             @csrf
                             <div class="row">
                                 <x-input-text name="nip" classes="" value=""
-                                              type="number" form="" label="NIP">
-                                    @error('nip')
-                                    <span class="text-danger">{{ $message }}</span>
-                                    @enderror
-                                </x-input-text>
+                                              type="number" form="" label="NIP"/>
 
                                 <x-input-text name="nama" classes="" value=""
-                                              type="" form="" label="Nama">
-                                    @error('nama')
-                                    <span class="text-danger">{{ $message }}</span>
-                                    @enderror
-                                </x-input-text>
+                                              type="" form="" label="Nama"/>
 
                                 <x-input-text name="hp" classes="" value=""
-                                              type="number" form="" label="No. HP">
-                                    @error('nama')
-                                    <span class="text-danger">{{ $message }}</span>
-                                    @enderror
-                                </x-input-text>
+                                              type="number" form="" label="No. HP"/>
 
-                                <div class="form-group">
-                                    <x-select name="peran" label="Peran" classes="">
-                                        @foreach($roles as $li)
-                                            <option value="{{ $li->id }}">{{ $li->name }}</option>
-                                        @endforeach
-                                    </x-select>
-                                    @error('peran')
-                                    <span class="text-danger">{{ $message }}</span>
-                                    @enderror
-                                </div>
+                                <x-select form="" name="peran" label="Peran" classes="">
+                                    @foreach($roles as $li)
+                                        <option value="{{ $li->id }}">{{ $li->name }}</option>
+                                    @endforeach
+                                </x-select>
 
                                 <x-input-text name="email" form="" classes="" value=""
-                                              type="email" label="Email">
-                                    @error('email')
-                                    <span class="text-danger">{{ $message }}</span>
-                                    @enderror
-                                </x-input-text>
+                                              type="email" label="Email"/>
                             </div>
                             <hr>
                             <h5 class="mb-3">Keamanan</h5>
                             <div class="row">
                                 <x-input-text name="username" form="" classes="" value=""
-                                              type="" label="Username">
-                                    @error('username')
-                                    <span class="text-danger">{{ $message }}</span>
-                                    @enderror
-                                </x-input-text>
+                                              type="" label="Username"/>
 
                                 <x-input-text name="password" form="" classes="" value=""
-                                              type="password" label="Password">
-                                    @error('password')
-                                    <span class="text-danger">{{ $message }}</span>
-                                    @enderror
-                                </x-input-text>
+                                              type="password" label="Password"/>
                             </div>
                             <button type="submit" class="btn btn-primary">Simpan</button>
                             <a href="{{ route('pengguna.index') }}" class="btn btn-secondary">Kembali</a>

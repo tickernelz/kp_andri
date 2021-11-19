@@ -4,7 +4,7 @@ namespace App\View\Components;
 
 use Illuminate\View\Component;
 
-class Select extends Component
+class TextArea extends Component
 {
     public $name;
 
@@ -23,8 +23,8 @@ class Select extends Component
     {
         $this->label = $label ?? '';
         $this->name = $name ?? '';
-        $this->classes = $classes ?? '';
         $this->form = $form ?? '';
+        $this->classes = $classes ?? '';
     }
 
     /**
@@ -34,6 +34,6 @@ class Select extends Component
      */
     public function render()
     {
-        return view('components.select');
+        return view('components.text-area');
     }
 }

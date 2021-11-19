@@ -24,42 +24,25 @@
                             <div class="row">
                                 <x-input-text name="nip" classes="" value="{{ $user->nip }}"
                                               type="number" form="" label="NIP">
-                                    @error('nip')
-                                    <span class="text-danger">{{ $message }}</span>
-                                    @enderror
                                 </x-input-text>
 
                                 <x-input-text name="nama" classes="" value="{{ $user->nama }}"
                                               type="" form="" label="Nama">
-                                    @error('nama')
-                                    <span class="text-danger">{{ $message }}</span>
-                                    @enderror
                                 </x-input-text>
 
                                 <x-input-text name="hp" classes="" value="{{ $user->hp }}"
                                               type="number" form="" label="No. HP">
-                                    @error('nama')
-                                    <span class="text-danger">{{ $message }}</span>
-                                    @enderror
                                 </x-input-text>
 
-                                <div class="form-group">
-                                    <x-select name="peran" label="Peran" classes="">
-                                        @foreach($roles as $li)
-                                            <option @if($user->roles->first()->id == $li->id) selected
-                                                    @endif value="{{ $li->id }}">{{ $li->name }}</option>
-                                        @endforeach
-                                    </x-select>
-                                    @error('peran')
-                                    <span class="text-danger">{{ $message }}</span>
-                                    @enderror
-                                </div>
+                                <x-select form="" name="peran" label="Peran" classes="">
+                                    @foreach($roles as $li)
+                                        <option @if($user->roles->first()->id == $li->id) selected
+                                                @endif value="{{ $li->id }}">{{ $li->name }}</option>
+                                    @endforeach
+                                </x-select>
 
                                 <x-input-text name="email" form="" classes="" value="{{ $user->email }}"
                                               type="email" label="Email">
-                                    @error('email')
-                                    <span class="text-danger">{{ $message }}</span>
-                                    @enderror
                                 </x-input-text>
                             </div>
                             <hr>
@@ -67,16 +50,10 @@
                             <div class="row">
                                 <x-input-text name="username" form="" classes="" value="{{ $user->username }}"
                                               type="" label="Username">
-                                    @error('username')
-                                    <span class="text-danger">{{ $message }}</span>
-                                    @enderror
                                 </x-input-text>
 
                                 <x-input-text name="password" form="" classes="" value=""
                                               type="password" label="Password">
-                                    @error('password')
-                                    <span class="text-danger">{{ $message }}</span>
-                                    @enderror
                                 </x-input-text>
                             </div>
                             <button type="submit" class="btn btn-primary">Simpan</button>
