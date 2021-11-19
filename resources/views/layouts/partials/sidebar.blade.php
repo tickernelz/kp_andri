@@ -276,7 +276,7 @@
                     </li>
                     {{--Ibu Hamil--}}
                     <li class="nav-item">
-                        <a class="nav-link {{ Nav::isResource('ibu_hamil') }}" data-bs-toggle="collapse"
+                        <a class="nav-link {{ Nav::isRoute('ibu_hamil.*') }}" data-bs-toggle="collapse"
                            href="#ibu-hamil"
                            role="button"
                            aria-expanded="false" aria-controls="ibu_hamil">
@@ -299,8 +299,8 @@
                         </a>
                         <ul class="sub-nav collapse" id="ibu-hamil" data-bs-parent="#sidebar-menu">
                             <li class="nav-item">
-                                <a class="nav-link {{--{{ Nav::isRoute('ibu_hamil.daftar') }}--}}"
-                                   href="{{--{{ route('ibu_hamil.daftar') }}--}}">
+                                <a class="nav-link {{ Nav::isRoute('ibu_hamil.pendaftaran') }}"
+                                   href="{{ route('ibu_hamil.pendaftaran') }}">
                                     <i class="icon">
                                         <svg xmlns="http://www.w3.org/2000/svg" width="10" viewBox="0 0 24 24"
                                              fill="currentColor">
@@ -314,8 +314,8 @@
                                 </a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link {{--{{ Nav::isRoute('ibu_hamil.index') }}--}}"
-                                   href="{{--{{ route('ibu_hamil.index') }}--}}">
+                                <a class="nav-link  {{ Nav::isRoute('ibu_hamil.list') }}"
+                                   href="{{ route('ibu_hamil.list') }}">
                                     <i class="icon">
                                         <svg xmlns="http://www.w3.org/2000/svg" width="10" viewBox="0 0 24 24"
                                              fill="currentColor">
@@ -329,8 +329,8 @@
                                 </a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link {{--{{ Nav::isRoute('ibu_hamil.pemeriksaan') }}--}}"
-                                   href="{{--{{ route('ibu_hamil.pemeriksaan') }}--}}">
+                                <a class="nav-link {{ Nav::isRoute(['ibu_hamil.pemeriksaan','ibu_hamil.pemeriksaan.*']) }}"
+                                   href="{{ route('ibu_hamil.pemeriksaan') }}">
                                     <i class="icon">
                                         <svg xmlns="http://www.w3.org/2000/svg" width="10" viewBox="0 0 24 24"
                                              fill="currentColor">

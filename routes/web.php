@@ -8,6 +8,7 @@ use App\Http\Controllers\ImunisasiController;
 use App\Http\Controllers\LansiaController;
 use App\Http\Controllers\PenggunaController;
 use App\Http\Controllers\PeriksaBalitaController;
+use App\Http\Controllers\PeriksaIbuHamilController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -59,6 +60,27 @@ Route::middleware('auth')->group(function () {
         Route::post('balita/pemeriksaan/store/{id}_{tanggal}', [PeriksaBalitaController::class, 'pemeriksaan_store'])->name('balita.pemeriksaan.store');
         // Hapus Data Balita
         Route::delete('balita/destroy/{id}', [BalitaController::class, 'destroy'])->name('balita.destroy');
+
+        // Pendaftaran Ibu Hamil
+        Route::get('ibu_hamil/pendaftaraan', [IbuHamilController::class, 'pendaftaran'])->name('ibu_hamil.pendaftaran');
+        Route::post('ibu_hamil/pendaftaraan/post', [IbuHamilController::class, 'pendaftaran_store'])->name('ibu_hamil.pendaftaran.post');
+        // List Ibu Hamil
+        Route::get('ibu_hamil/list', [IbuHamilController::class, 'list'])->name('ibu_hamil.list');
+        // Lihat Detail Ibu Hamil
+        Route::get('ibu_hamil/detail/{id}', [IbuHamilController::class, 'detail'])->name('ibu_hamil.detail');
+        // Edit Data Ibu Hamil
+        Route::get('ibu_hamil/edit/{id}', [IbuHamilController::class, 'edit'])->name('ibu_hamil.edit');
+        Route::post('ibu_hamil/edit/{id}/post', [IbuHamilController::class, 'edit_store'])->name('ibu_hamil.edit.post');
+        // Pemeriksaan Ibu Hamil
+        Route::get('ibu_hamil/pemeriksaan', [PeriksaIbuHamilController::class, 'pemeriksaan'])->name('ibu_hamil.pemeriksaan');
+        Route::get('ibu_hamil/pemeriksaan/cari', [PeriksaIbuHamilController::class, 'pemeriksaan_cari'])->name('ibu_hamil.pemeriksaan.cari');
+        Route::get('ibu_hamil/pemeriksaan/cari?tanggal={tanggal}', [PeriksaIbuHamilController::class, 'pemeriksaan_cari'])->name('ibu_hamil.pemeriksaan.cari.tanggal');
+        Route::get('ibu_hamil/pemeriksaan/{id}_{tanggal}', [PeriksaIbuHamilController::class, 'pemeriksaan_input'])->name('ibu_hamil.pemeriksaan.input');
+        Route::get('ibu_hamil/pemeriksaan/edit/{id}_{tanggal}', [PeriksaIbuHamilController::class, 'pemeriksaan_edit'])->name('ibu_hamil.pemeriksaan.edit');
+        Route::post('ibu_hamil/pemeriksaan/update/{id}_{tanggal}', [PeriksaIbuHamilController::class, 'pemeriksaan_update'])->name('ibu_hamil.pemeriksaan.update');
+        Route::post('ibu_hamil/pemeriksaan/store/{id}_{tanggal}', [PeriksaIbuHamilController::class, 'pemeriksaan_store'])->name('ibu_hamil.pemeriksaan.store');
+        // Hapus Data Ibu Hamil
+        Route::delete('ibu_hamil/destroy/{id}', [BalitaController::class, 'destroy'])->name('ibu_hamil.destroy');
 
         Route::resource('ibu_hamil', IbuHamilController::class);
         Route::resource('lansia', LansiaController::class);
