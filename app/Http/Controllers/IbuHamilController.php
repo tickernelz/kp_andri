@@ -141,9 +141,6 @@ class IbuHamilController extends Controller
             'Alamat' => function ($data) {
                 return $data->peserta->alamat ?? 'Kosong';
             },
-            'Kelamin' => function ($data) {
-                return $data->peserta->kelamin ?? 'Kosong';
-            },
             'Tanggal Lahir' => function ($data) {
                 return Carbon::parse($data->peserta->tanggal_lahir)->formatLocalized('%d %B %Y') ?? 'Kosong';
             },
@@ -154,7 +151,7 @@ class IbuHamilController extends Controller
 
         // Generate Report with flexibility to manipulate column class even manipulate column value (using Carbon, etc).
         return PdfReport::of($title, $meta, $data, $columns)
-            ->editColumns(['Nama', 'Golongan Darah', 'Riwayat Penyakit', 'Riwayat Alergi', 'NIK', 'KK', 'Alamat', 'Kelamin', 'Tanggal Lahir', 'HP'], [
+            ->editColumns(['Nama', 'Golongan Darah', 'Riwayat Penyakit', 'Riwayat Alergi', 'NIK', 'KK', 'Alamat', 'Tanggal Lahir', 'HP'], [
                 'class' => 'center bolder',
             ])
             ->setOrientation('landscape')
