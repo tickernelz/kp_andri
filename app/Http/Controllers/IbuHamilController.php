@@ -4,7 +4,9 @@ namespace App\Http\Controllers;
 
 use App\Models\IbuHamil;
 use App\Models\Peserta;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
+use PdfReport;
 
 class IbuHamilController extends Controller
 {
@@ -97,6 +99,66 @@ class IbuHamilController extends Controller
         $data = IbuHamil::with('peserta')->firstWhere('id', $id);
 
         return view('data.ibu_hamil.detail', compact('data'));
+    }
+
+    public function laporan_pendaftaran(Request $request)
+    {
+        $fromDate = $request->input('dari_tanggal');
+        $toDate = $request->input('sampai_tanggal');
+
+        if ($fromDate >= $toDate) {
+            return back()->with('error', 'Tanggal Akhir Tidak Boleh Kurang Dari Tanggal Awal');
+        }
+
+        $title = 'Laporan Pendaftaran Ibu Hamil';
+
+        $meta = [
+            'Dari Tanggal' => Carbon::parse($fromDate)->formatLocalized('%d %B %Y'),
+            'Sampai Tanggal' => Carbon::parse($toDate)->formatLocalized('%d %B %Y'),
+        ];
+
+        $data = IbuHamil::with('peserta')->whereBetween('created_at', [$fromDate, $toDate]);
+
+        $columns = [
+            'Nama' => function ($data) {
+                return $data->peserta->nama ?? 'Kosong';
+            },
+            'Golongan Darah' => function ($data) {
+                return $data->golongan_darah ?? 'Kosong';
+            },
+            'Riwayat Penyakit' => function ($data) {
+                return $data->riwayat_penyakit ?? 'Kosong';
+            },
+            'Riwayat Alergi' => function ($data) {
+                return $data->riwayat_alergi ?? 'Kosong';
+            },
+            'NIK' => function ($data) {
+                return $data->peserta->nik ?? 'Kosong';
+            },
+            'KK' => function ($data) {
+                return $data->peserta->kk ?? 'Kosong';
+            },
+            'Alamat' => function ($data) {
+                return $data->peserta->alamat ?? 'Kosong';
+            },
+            'Kelamin' => function ($data) {
+                return $data->peserta->kelamin ?? 'Kosong';
+            },
+            'Tanggal Lahir' => function ($data) {
+                return Carbon::parse($data->peserta->tanggal_lahir)->formatLocalized('%d %B %Y') ?? 'Kosong';
+            },
+            'HP' => function ($data) {
+                return $data->peserta->hp ?? 'Kosong';
+            },
+        ];
+
+        // Generate Report with flexibility to manipulate column class even manipulate column value (using Carbon, etc).
+        return PdfReport::of($title, $meta, $data, $columns)
+            ->editColumns(['Nama', 'Golongan Darah', 'Riwayat Penyakit', 'Riwayat Alergi', 'NIK', 'KK', 'Alamat', 'Kelamin', 'Tanggal Lahir', 'HP'], [
+                'class' => 'center bolder',
+            ])
+            ->setOrientation('landscape')
+            ->stream();
     }
 
     public function destroy(int $id)

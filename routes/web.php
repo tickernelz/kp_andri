@@ -46,7 +46,6 @@ Route::middleware('auth')->group(function () {
         Route::post('balita/pendaftaraan/post', [BalitaController::class, 'pendaftaran_store'])->name('balita.pendaftaran.post');
         // List Balita
         Route::get('balita/list', [BalitaController::class, 'list'])->name('balita.list');
-        Route::post('balita/list/laporan', [BalitaController::class, 'laporan_pendaftaran'])->name('balita.list.laporan');
         // Lihat Detail Balita
         Route::get('balita/detail/{id}', [BalitaController::class, 'detail'])->name('balita.detail');
         // Edit Data Balita
@@ -55,8 +54,6 @@ Route::middleware('auth')->group(function () {
         // Pemeriksaan Balita
         Route::get('balita/pemeriksaan', [PeriksaBalitaController::class, 'pemeriksaan'])->name('balita.pemeriksaan');
         Route::get('balita/pemeriksaan/cari', [PeriksaBalitaController::class, 'pemeriksaan_cari'])->name('balita.pemeriksaan.cari');
-        Route::post('balita/pemeriksaan/laporan', [PeriksaBalitaController::class, 'laporan_pemeriksaan'])->name('balita.pemeriksaan.laporan');
-        Route::post('balita/pemeriksaan/kehadiran/laporan', [PeriksaBalitaController::class, 'laporan_kehadiran'])->name('balita.pemeriksaan.kehadiran.laporan');
         Route::get('balita/pemeriksaan/cari?tanggal={tanggal}', [PeriksaBalitaController::class, 'pemeriksaan_cari'])->name('balita.pemeriksaan.cari.tanggal');
         Route::get('balita/pemeriksaan/{id}_{tanggal}', [PeriksaBalitaController::class, 'pemeriksaan_input'])->name('balita.pemeriksaan.input');
         Route::get('balita/pemeriksaan/edit/{id}_{tanggal}', [PeriksaBalitaController::class, 'pemeriksaan_edit'])->name('balita.pemeriksaan.edit');
@@ -64,6 +61,10 @@ Route::middleware('auth')->group(function () {
         Route::post('balita/pemeriksaan/store/{id}_{tanggal}', [PeriksaBalitaController::class, 'pemeriksaan_store'])->name('balita.pemeriksaan.store');
         // Hapus Data Balita
         Route::delete('balita/destroy/{id}', [BalitaController::class, 'destroy'])->name('balita.destroy');
+        // Laporan Balita
+        Route::post('balita/list/laporan', [BalitaController::class, 'laporan_pendaftaran'])->name('balita.list.laporan');
+        Route::post('balita/pemeriksaan/laporan', [PeriksaBalitaController::class, 'laporan_pemeriksaan'])->name('balita.pemeriksaan.laporan');
+        Route::post('balita/pemeriksaan/kehadiran/laporan', [PeriksaBalitaController::class, 'laporan_kehadiran'])->name('balita.pemeriksaan.kehadiran.laporan');
 
         // Pendaftaran Ibu Hamil
         Route::get('ibu_hamil/pendaftaraan', [IbuHamilController::class, 'pendaftaran'])->name('ibu_hamil.pendaftaran');
@@ -85,6 +86,10 @@ Route::middleware('auth')->group(function () {
         Route::post('ibu_hamil/pemeriksaan/store/{id}_{tanggal}', [PeriksaIbuHamilController::class, 'pemeriksaan_store'])->name('ibu_hamil.pemeriksaan.store');
         // Hapus Data Ibu Hamil
         Route::delete('ibu_hamil/destroy/{id}', [IbuHamilController::class, 'destroy'])->name('ibu_hamil.destroy');
+        // Laporan Ibu Hamil
+        Route::post('ibu_hamil/list/laporan', [IbuHamilController::class, 'laporan_pendaftaran'])->name('ibu_hamil.list.laporan');
+        Route::post('ibu_hamil/pemeriksaan/laporan', [PeriksaIbuHamilController::class, 'laporan_pemeriksaan'])->name('ibu_hamil.pemeriksaan.laporan');
+        Route::post('ibu_hamil/pemeriksaan/kehadiran/laporan', [PeriksaIbuHamilController::class, 'laporan_kehadiran'])->name('ibu_hamil.pemeriksaan.kehadiran.laporan');
 
         // Pendaftaran Lansia
         Route::get('lansia/pendaftaraan', [LansiaController::class, 'pendaftaran'])->name('lansia.pendaftaran');
