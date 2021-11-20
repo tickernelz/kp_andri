@@ -111,5 +111,9 @@ Route::middleware('auth')->group(function () {
         Route::post('lansia/pemeriksaan/store/{id}_{tanggal}', [PeriksaLansiaController::class, 'pemeriksaan_store'])->name('lansia.pemeriksaan.store');
         // Hapus Data Lansia
         Route::delete('lansia/destroy/{id}', [LansiaController::class, 'destroy'])->name('lansia.destroy');
+        // Laporan Balita
+        Route::post('lansia/list/laporan', [LansiaController::class, 'laporan_pendaftaran'])->name('lansia.list.laporan');
+        Route::post('lansia/pemeriksaan/laporan', [PeriksaLansiaController::class, 'laporan_pemeriksaan'])->name('lansia.pemeriksaan.laporan');
+        Route::post('lansia/pemeriksaan/kehadiran/laporan', [PeriksaLansiaController::class, 'laporan_kehadiran'])->name('lansia.pemeriksaan.kehadiran.laporan');
     });
 });

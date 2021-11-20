@@ -3,7 +3,53 @@
 @push('title', 'List Lansia')
 
 @section('content')
-    <div class="col-sm-6" style="float:none;margin:auto;">
+    <div class="modal fade" id="laporan-pemeriksaan" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
+         aria-labelledby="staticBackdropLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <form action="{{ route('lansia.pemeriksaan.laporan') }}" method="post">
+                    @csrf
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="staticBackdropLabel">Cetak Laporan Pemeriksaan</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Tutup"></button>
+                    </div>
+                    <div class="modal-body">
+                        <x-flatpickr value="" name="dari_tanggal" label="Dari Tanggal" form="" classes=""/>
+                        <x-flatpickr value="" name="sampai_tanggal" label="Sampai Tanggal" form="" classes=""/>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Tutup</button>
+                        <button type="submit" class="btn btn-primary">Cetak</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal fade" id="laporan-kehadiran" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
+         aria-labelledby="staticBackdropLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <form action="{{ route('lansia.pemeriksaan.kehadiran.laporan') }}" method="post">
+                    @csrf
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="staticBackdropLabel">Cetak Laporan Kehadiran</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Tutup"></button>
+                    </div>
+                    <div class="modal-body">
+                        <x-flatpickr value="" name="dari_tanggal" label="Dari Tanggal" form="" classes=""/>
+                        <x-flatpickr value="" name="sampai_tanggal" label="Sampai Tanggal" form="" classes=""/>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Tutup</button>
+                        <button type="submit" class="btn btn-primary">Cetak</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-sm-8" style="float:none;margin:auto;">
         <form action="{{ route('lansia.pemeriksaan.cari') }}" method="get">
             @csrf
             <div class="card">
@@ -12,6 +58,12 @@
                         <h4 class="card-title">Tanggal Pemeriksaan</h4>
                     </div>
                     <div class="d-flex justify-content-end">
+                        <button type="button" style="margin-right: 6px" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#laporan-kehadiran">
+                            Laporan Kehadiran
+                        </button>
+                        <button type="button" style="margin-right: 6px" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#laporan-pemeriksaan">
+                            Laporan Pemeriksaan
+                        </button>
                         <button type="submit" class="btn btn-soft-primary">Cari</button>
                     </div>
                 </div>
@@ -22,7 +74,7 @@
                     @endif
                     @if (session('error'))
                         <x-alert position="top" message="{{ session('error') }}"
-                                 type="error"/>
+                                 type="warning"/>
                     @endif
                     <x-flatpickr classes="" label="Pilih Tanggal" name="tanggal" form="" value="{{ $tanggal ?? '' }}"/>
                 </div>
