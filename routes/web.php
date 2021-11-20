@@ -10,6 +10,7 @@ use App\Http\Controllers\PenggunaController;
 use App\Http\Controllers\PeriksaBalitaController;
 use App\Http\Controllers\PeriksaIbuHamilController;
 use App\Http\Controllers\PeriksaLansiaController;
+use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -30,6 +31,9 @@ Route::get('logout', [AuthController::class, 'logout'])->name('logout');
 Route::post('login', [AuthController::class, 'login'])->name('post-login');
 
 Route::middleware('auth')->group(function () {
+    // Profile
+    Route::get('/profile', [ProfileController::class, 'index'])->name('profile');
+    Route::put('/profile', [ProfileController::class, 'update'])->name('profile.update');
     // Home
     Route::get('/home', [HomeController::class, 'index'])->name('home');
     // Kelola Pengguna

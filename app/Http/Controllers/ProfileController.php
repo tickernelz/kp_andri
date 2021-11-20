@@ -49,6 +49,6 @@ class ProfileController extends Controller
 
         $user->save();
 
-        return redirect()->route('profile');
+        return back()->with('success', 'Profile Berhasil Diperbarui!');
     }
 }
