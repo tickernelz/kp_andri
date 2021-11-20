@@ -105,8 +105,7 @@ class BalitaController extends Controller
         $fromDate = $request->input('dari_tanggal');
         $toDate = $request->input('sampai_tanggal');
 
-        if($fromDate >= $toDate)
-        {
+        if ($fromDate >= $toDate) {
             return back()->with('error', 'Tanggal Akhir Tidak Boleh Kurang Dari Tanggal Awal');
         }
 
@@ -114,7 +113,7 @@ class BalitaController extends Controller
 
         $meta = [
             'Dari Tanggal' => Carbon::parse($fromDate)->formatLocalized('%d %B %Y'),
-            'Sampai Tanggal' => Carbon::parse($toDate)->formatLocalized('%d %B %Y')
+            'Sampai Tanggal' => Carbon::parse($toDate)->formatLocalized('%d %B %Y'),
         ];
 
         $data = Balita::with('peserta')->whereBetween('created_at', [$fromDate, $toDate]);
@@ -142,7 +141,7 @@ class BalitaController extends Controller
                 return $data->peserta->kelamin ?? 'Kosong';
             },
             'Tanggal Lahir' => function ($data) {
-                return Carbon::parse($data->peserta->tanggal_lahir)->formatLocalized('%d %B %Y') ?? 'Kosong' ;
+                return Carbon::parse($data->peserta->tanggal_lahir)->formatLocalized('%d %B %Y') ?? 'Kosong';
             },
             'HP' => function ($data) {
                 return $data->peserta->hp ?? 'Kosong';
@@ -152,7 +151,7 @@ class BalitaController extends Controller
         // Generate Report with flexibility to manipulate column class even manipulate column value (using Carbon, etc).
         return PdfReport::of($title, $meta, $data, $columns)
             ->editColumns(['Nama', 'Nama Ayah', 'Nama Ibu', 'NIK', 'KK', 'Alamat', 'Kelamin', 'Tanggal Lahir', 'HP'], [
-                'class' => 'center bolder'
+                'class' => 'center bolder',
             ])
             ->setOrientation('landscape')
             ->stream();

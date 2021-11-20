@@ -115,7 +115,7 @@ class PeriksaBalitaController extends Controller
 
         $meta = [
             'Dari Tanggal' => Carbon::parse($fromDate)->formatLocalized('%d %B %Y'),
-            'Sampai Tanggal' => Carbon::parse($toDate)->formatLocalized('%d %B %Y')
+            'Sampai Tanggal' => Carbon::parse($toDate)->formatLocalized('%d %B %Y'),
         ];
 
         $data = PeriksaBalita::with('imunisasi')->whereHas('pemeriksaan', function ($q) use ($toDate, $fromDate) {
@@ -127,7 +127,7 @@ class PeriksaBalitaController extends Controller
                 return $data->pemeriksaan->peserta->nama ?? 'Kosong';
             },
             'Usia' => function ($data) {
-                return Carbon::parse($data->pemeriksaan->peserta->tanggal_lahir)->age . ' Tahun' ?? 'Kosong';
+                return Carbon::parse($data->pemeriksaan->peserta->tanggal_lahir)->age.' Tahun' ?? 'Kosong';
             },
             'Berat Badan' => function ($data) {
                 return $data->berat_badan ?? 'Kosong';
@@ -155,7 +155,7 @@ class PeriksaBalitaController extends Controller
         // Generate Report with flexibility to manipulate column class even manipulate column value (using Carbon, etc).
         return PdfReport::of($title, $meta, $data, $columns)
             ->editColumns(['Nama', 'Usia', 'Berat Badan', 'Tinggi Badan', 'Lingkar Kepala', 'Imunisasi', 'Keluhan', 'Penanganan', 'Catatan'], [
-                'class' => 'center bolder'
+                'class' => 'center bolder',
             ])
             ->setOrientation('landscape')
             ->stream();
@@ -174,7 +174,7 @@ class PeriksaBalitaController extends Controller
 
         $meta = [
             'Dari Tanggal' => Carbon::parse($fromDate)->formatLocalized('%d %B %Y'),
-            'Sampai Tanggal' => Carbon::parse($toDate)->formatLocalized('%d %B %Y')
+            'Sampai Tanggal' => Carbon::parse($toDate)->formatLocalized('%d %B %Y'),
         ];
 
         $data = Balita::with('peserta')->whereBetween('created_at', [$fromDate, $toDate]);
@@ -184,7 +184,7 @@ class PeriksaBalitaController extends Controller
                 return $data->peserta->nama ?? 'Kosong';
             },
             'Usia' => function ($data) {
-                return Carbon::parse($data->peserta->tanggal_lahir)->age . ' Tahun' ?? 'Kosong';
+                return Carbon::parse($data->peserta->tanggal_lahir)->age.' Tahun' ?? 'Kosong';
             },
             'Kelamin' => function ($data) {
                 return $data->peserta->kelamin ?? 'Kosong';
@@ -204,7 +204,7 @@ class PeriksaBalitaController extends Controller
         // Generate Report with flexibility to manipulate column class even manipulate column value (using Carbon, etc).
         return PdfReport::of($title, $meta, $data, $columns)
             ->editColumns(['Nama', 'Usia', 'Kelamin', 'Alamat', 'Kehadiran'], [
-                'class' => 'center bolder'
+                'class' => 'center bolder',
             ])
             ->setOrientation('landscape')
             ->stream();

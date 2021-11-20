@@ -2,5 +2,5 @@
 
 return [
     'flush' => false,
-    'pdfLibrary' => 'dompdf' // snappy, dompdf
+    'pdfLibrary' => 'dompdf', // snappy, dompdf
 ];
