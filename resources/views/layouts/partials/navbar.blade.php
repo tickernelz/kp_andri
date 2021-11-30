@@ -13,7 +13,7 @@
                 <rect x="10.5562" y="-0.556152" width="28" height="4" rx="2"
                       transform="rotate(45 10.5562 -0.556152)" fill="currentColor"/>
             </svg>
-            <!--logo End--> <h4 class="logo-title">POSYANDU</h4>
+            <!--logo End--> <h4 class="logo-title">{{ \App\Models\Pengaturan::firstWhere('id', 1)->nama_aplikasi ?? '' }}</h4>
         </a>
         <div class="sidebar-toggle" data-toggle="sidebar" data-active="true">
             <i class="icon">

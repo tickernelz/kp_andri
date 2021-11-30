@@ -69,30 +69,18 @@ class Pemeriksaan extends Model
         return $this->belongsTo(Peserta::class);
     }
 
-    public function periksa_balitas()
-    {
-        return $this->hasMany(PeriksaBalita::class);
-    }
 
     public function periksa_balita()
     {
         return $this->hasOne(PeriksaBalita::class);
     }
 
-    public function periksa_ibu_hamils()
-    {
-        return $this->hasMany(PeriksaIbuHamil::class);
-    }
 
     public function periksa_ibu_hamil()
     {
         return $this->hasOne(PeriksaIbuHamil::class);
     }
 
-    public function periksa_lansias()
-    {
-        return $this->hasMany(PeriksaLansia::class);
-    }
 
     public function periksa_lansia()
     {

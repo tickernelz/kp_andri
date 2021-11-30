@@ -3,7 +3,7 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <title>@stack('title') | POSYANDU</title>
+    <title>@stack('title') | {{ \App\Models\Pengaturan::firstWhere('id', 1)->nama_aplikasi ?? '' }}</title>
 
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">

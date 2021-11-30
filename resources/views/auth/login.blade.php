@@ -24,7 +24,7 @@
                                             <rect x="10.5562" y="-0.556152" width="28" height="4" rx="2"
                                                   transform="rotate(45 10.5562 -0.556152)" fill="currentColor"/>
                                         </svg>
-                                        <!--logo End--> <h4 class="logo-title ms-3">POSYANDU</h4>
+                                        <!--logo End--> <h4 class="logo-title ms-3">{{ \App\Models\Pengaturan::firstWhere('id', 1)->nama_aplikasi ?? '' }}</h4>
                                     </a>
                                     <h2 class="mb-2 text-center">Sign In</h2>
                                     <p class="text-center">Masuk kedalam dashboard admin.</p>

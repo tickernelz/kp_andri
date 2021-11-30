@@ -73,19 +73,9 @@ class Peserta extends Model
         'hp',
     ];
 
-    public function balitas()
-    {
-        return $this->hasMany(Balita::class);
-    }
-
     public function balita()
     {
         return $this->hasOne(Balita::class);
-    }
-
-    public function ibu_hamils()
-    {
-        return $this->hasMany(IbuHamil::class);
     }
 
     public function ibu_hamil()
@@ -93,19 +83,9 @@ class Peserta extends Model
         return $this->hasOne(IbuHamil::class);
     }
 
-    public function lansias()
-    {
-        return $this->hasMany(Lansia::class);
-    }
-
     public function lansia()
     {
         return $this->hasOne(Lansia::class);
-    }
-
-    public function pemeriksaans()
-    {
-        return $this->hasMany(Pemeriksaan::class);
     }
 
     public function pemeriksaan()

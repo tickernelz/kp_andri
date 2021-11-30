@@ -21,6 +21,7 @@ class RoleSeeder extends Seeder
 
         // create permissions
         Permission::create(['name' => 'kelola pengguna']);
+        Permission::create(['name' => 'pengaturan']);
         Permission::create(['name' => 'kelola data']);
         Permission::create(['name' => 'melihat data']);
 
@@ -30,6 +31,7 @@ class RoleSeeder extends Seeder
         ]);
         $role1->givePermissionTo('kelola pengguna');
         $role1->givePermissionTo('kelola data');
+        $role1->givePermissionTo('pengaturan');
 
         $role2 = Role::create([
             'name' => 'Kader',

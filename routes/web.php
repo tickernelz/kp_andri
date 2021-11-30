@@ -6,6 +6,7 @@ use App\Http\Controllers\HomeController;
 use App\Http\Controllers\IbuHamilController;
 use App\Http\Controllers\ImunisasiController;
 use App\Http\Controllers\LansiaController;
+use App\Http\Controllers\PengaturanController;
 use App\Http\Controllers\PenggunaController;
 use App\Http\Controllers\PeriksaBalitaController;
 use App\Http\Controllers\PeriksaIbuHamilController;
@@ -39,6 +40,10 @@ Route::middleware('auth')->group(function () {
     // Kelola Pengguna
     Route::middleware('can:kelola pengguna')->group(function () {
         Route::resource('pengguna', PenggunaController::class);
+    });
+    Route::middleware('can:pengaturan')->group(function () {
+        Route::get('/pengaturan', [PengaturanController::class, 'index'])->name('pengaturan.index');
+        Route::post('/pengaturan/post', [PengaturanController::class, 'ubah'])->name('pengaturan.ubah');
     });
 
     // Kelola Data

@@ -40,11 +40,6 @@ class Imunisasi extends Model
         'kegunaan',
     ];
 
-    public function periksa_balitas()
-    {
-        return $this->hasMany(PeriksaBalita::class);
-    }
-
     public function periksa_balita()
     {
         return $this->hasOne(PeriksaBalita::class);
