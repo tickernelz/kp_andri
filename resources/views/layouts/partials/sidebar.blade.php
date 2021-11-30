@@ -201,7 +201,7 @@
                 @can('kelola data')
                     <li class="nav-item static-item">
                         <a class="nav-link static-item disabled" href="#" tabindex="-1">
-                            <span class="default-icon">Data</span>
+                            <span class="default-icon">Kelola</span>
                             <span class="mini-icon">-</span>
                         </a>
                     </li>

@@ -27,6 +27,7 @@ use Illuminate\Support\Facades\Route;
 
 // Auth
 Route::get('/', [AuthController::class, 'formlogin'])->name('index');
+Route::get('/reset-password', [AuthController::class, 'reset_password'])->name('lupa-password');
 Route::get('login', [AuthController::class, 'formlogin'])->name('login');
 Route::get('logout', [AuthController::class, 'logout'])->name('logout');
 Route::post('login', [AuthController::class, 'login'])->name('post-login');

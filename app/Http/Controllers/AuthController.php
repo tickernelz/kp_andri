@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use Auth;
 use Illuminate\Http\Request;
-use Session;
+use Laravel\Fortify\Fortify;
 
 class AuthController extends Controller
 {
@@ -16,6 +16,14 @@ class AuthController extends Controller
         }
 
         return view('auth.login');
+    }
+
+    public function reset_password()
+    {
+        Fortify::resetPasswordView(function ($request) {
+            return view('auth.reset-password', ['request' => $request]);
+        });
+        return view('auth.forgot-password');
     }
 
     public function login(Request $request)

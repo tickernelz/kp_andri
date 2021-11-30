@@ -24,12 +24,13 @@
                                             <rect x="10.5562" y="-0.556152" width="28" height="4" rx="2"
                                                   transform="rotate(45 10.5562 -0.556152)" fill="currentColor"/>
                                         </svg>
-                                        <!--logo End--> <h4 class="logo-title ms-3">{{ \App\Models\Pengaturan::firstWhere('id', 1)->nama_aplikasi ?? '' }}</h4>
+                                        <!--logo End--> <h4
+                                            class="logo-title ms-3">{{ \App\Models\Pengaturan::firstWhere('id', 1)->nama_aplikasi ?? '' }}</h4>
                                     </a>
-                                    <h2 class="mb-2 text-center">Sign In</h2>
-                                    <p class="text-center">Masuk kedalam dashboard admin.</p>
-                                    <form method="POST" action="{{ route('login') }}">
+                                    <h2 class="mb-2 text-center">Lupa Password</h2>
+                                    <form method="POST" action="{{ route('password.update') }}">
                                         @csrf
+                                        <input type="hidden" name="token" value="{{ $request->route('token') }}">
                                         <div class="row">
                                             @if ($errors->any())
                                                 <x-alert position="top" message="" type="warning">
@@ -45,19 +46,25 @@
                                                 <x-alert position="top" message="{{ session('error') }}"
                                                          type="warning"/>
                                             @endif
+                                            @if (session('success'))
+                                                <x-alert position="top" message="{{ session('success') }}"
+                                                         type="success"/>
+                                            @endif
                                             <div class="col-lg-12">
-                                                <x-input-text name="username" form="" classes="" value="" type="" label="Username"/>
+                                                <x-input-text name="email" form="" classes="" value="" type="email"
+                                                              label="Email"/>
                                             </div>
                                             <div class="col-lg-12">
-                                                <x-input-text name="password" form="" classes="" value="" type="password" label="Password"/>
+                                                <x-input-text name="password" form="" classes="" value="" type="password"
+                                                              label="Password Baru"/>
                                             </div>
-                                            <div class="col-lg-12 d-flex justify-content-between">
-                                                <x-check-box name="remember" label="Ingat Saya" class=""/>
-                                                <a href="{{ route('lupa-password') }}">Lupa Password?</a>
+                                            <div class="col-lg-12">
+                                                <x-input-text name="password_confirmation" form="" classes="" value="" type="password"
+                                                              label="Konfirmasi Password Baru"/>
                                             </div>
                                         </div>
                                         <div class="d-flex justify-content-center">
-                                            <button type="submit" class="btn btn-primary">Masuk</button>
+                                            <button type="submit" class="btn btn-primary">Reset Password</button>
                                         </div>
                                     </form>
                                 </div>
