@@ -30,6 +30,8 @@ use Illuminate\Database\Eloquent\Model;
  * @method static \Illuminate\Database\Eloquent\Builder|Imunisasi whereUpdatedAt($value)
  * @mixin \Eloquent
  * @property-read \App\Models\PeriksaBalita|null $periksa_balita
+ * @property int $stok
+ * @method static \Illuminate\Database\Eloquent\Builder|Imunisasi whereStok($value)
  */
 class Imunisasi extends Model
 {
@@ -38,6 +40,7 @@ class Imunisasi extends Model
     protected $fillable = [
         'nama',
         'kegunaan',
+        'stok',
     ];
 
     public function periksa_balita()

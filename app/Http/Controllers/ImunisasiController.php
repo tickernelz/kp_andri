@@ -28,12 +28,14 @@ class ImunisasiController extends Controller
     {
         $request->validate([
             'nama' => 'required|string|unique:imunisasis',
-            'kegunaan' => 'nullable|string|unique:imunisasis',
+            'kegunaan' => 'nullable|string',
+            'stok' => 'required|integer',
         ]);
 
         $data = new Imunisasi();
         $data->nama = $request->input('nama');
         $data->kegunaan = $request->input('kegunaan');
+        $data->stok = $request->input('stok');
         $data->save();
 
         return back()->with('success', 'Data Berhasil Ditambahkan!');
@@ -54,12 +56,14 @@ class ImunisasiController extends Controller
         $data = Imunisasi::firstWhere('id', $id);
 
         $request->validate([
-            'nama' => 'required|string|unique:imunisasis',
-            'kegunaan' => 'nullable|string|unique:imunisasis',
+            'nama' => 'required|string|unique:imunisasis,nama,'.$data->id,
+            'kegunaan' => 'nullable|string',
+            'stok' => 'required|integer',
         ]);
 
         $data->nama = $request->input('nama');
         $data->kegunaan = $request->input('kegunaan');
+        $data->stok = $request->input('stok');
         $data->save();
 
         return back()->with('success', 'Data Berhasil Diperbarui!');

@@ -23,6 +23,8 @@
                                 <th style="width: 5%">#</th>
                                 <th>Nama</th>
                                 <th>Kegunaan</th>
+                                <th>Total Stok</th>
+                                <th>Sisa Stok</th>
                                 <th>Aksi</th>
                             </tr>
                             </thead>
@@ -31,7 +33,9 @@
                                 <tr>
                                     <td>{{ $loop->iteration ?? 'Kosong' }}</td>
                                     <td>{{ $li->nama ?? 'Kosong' }}</td>
-                                    <td>{{ $li->kegunaan ?? 'Kosong' }}</td>
+                                    <td>{!! $li->kegunaan ?? 'Kosong' !!}</td>
+                                    <td>{{ $li->stok ?? 'Kosong' }}</td>
+                                    <td>{{ ($li->stok - \App\Models\PeriksaBalita::where('imunisasi_id', $li->id)->count()) ?? 'Kosong' }}</td>
                                     <td>
                                         <form action="{{ route('imunisasi.destroy', $li->id) }}" method="post">
                                             <div class="btn-group btn-group-sm" role="group">
@@ -61,6 +65,7 @@
         $(document).ready(function () {
             $('#table').DataTable({
                 responsive: true,
+                autoWidth: true,
                 language: {
                     url: '//cdn.datatables.net/plug-ins/1.11.3/i18n/id.json'
                 }

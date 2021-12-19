@@ -21,10 +21,11 @@
                             @csrf
                             <div class="row">
                                 <x-input-text name="nama" classes="" value=""
-                                              type="" form="" label="Nama"/>
-
+                                              type="" form="" label="Nama Imunisasi"/>
                                 <x-input-text name="kegunaan" classes="" value=""
                                               type="" form="" label="Kegunaan"/>
+                                <x-input-text name="stok" classes="" value=""
+                                              type="" form="" label="Stok"/>
                             </div>
                             <button type="submit" class="btn btn-primary">Simpan</button>
                             <a href="{{ route('imunisasi.index') }}" class="btn btn-secondary">Kembali</a>

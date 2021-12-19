@@ -17,6 +17,7 @@ class CreateImunisasisTable extends Migration
             $table->id();
             $table->string('nama');
             $table->text('kegunaan')->nullable();
+            $table->integer('stok');
             $table->timestamps();
         });
     }
